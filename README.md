@@ -1,6 +1,6 @@
 # 3DEMFDFD
 
-GAIA 3DEMFDFD is a 4th-order finite difference solver used for the approximation of the residual electrical and the magnetic field in a homogeneous halfspace three-dimensional domain. The repository contains 3 directories with the necessary files for the solver to provide results, a config file and the shell script.
+GAIA 3DEMFDFD is a 4th-order finite difference solver used for the approximation of the residual electrical and the magnetic field in a homogeneous halfspace three-dimensional domain. The repository contains 2 directories with the necessary files for the solver to provide results, an empty temp folder, a config file and the shell script.
 1. halfspace
 2. repo
 3. temp
