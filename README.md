@@ -7,7 +7,7 @@ GAIA 3DEMFDFD is a 4th-order finite difference solver used for the approximation
 
 The first one contains the Fortran files and the Makefile as well as the subdirectory Results where the approximation of each E component and the Magnetic Field z-component at the end of the computation. The second contains key files that compute the primary electric field intensity in Matlab. The last is being used in as a temporary files folder.
 
-Instructions
+**Instructions**
 
 The config file contains the necessary parameters of the physical problem in the following manner:
 
@@ -18,8 +18,8 @@ Background-resistivity
 Foreground-resistivity  
 Frequency  
 
-*Important Notice: The Position-of-transmitter-in-z-direction in the config file should be entered as a negative number which refers to the height of the transmitter above the ground. For instance, (the Position-of-transmitter-in-z-direction=) -22 value when the ground (Ground-in-z-direction) is set to 208 indicates the transmitter to be at 230.
+***Important Notice**: The Position-of-transmitter-in-z-direction in the config file should be entered as a negative number which refers to the height of the transmitter above the ground. For instance, (the Position-of-transmitter-in-z-direction=) -22 value when the ground (Ground-in-z-direction) is set to 208 indicates the transmitter to be at 230.
 
 The solver's parameters (tolerance and maximum number of steps for the iterative method) may be altered from within the main.f file located in halfspace folder.
 
-To use the solver, provide the necessary parameters in the config.dat file and then run the command gaia.sh < config.dat
+To use the solver, provide the necessary parameters in the config.dat file as explained above and then run the command **gaia.sh < config.dat**
