@@ -11,12 +11,12 @@ Instructions
 
 The config file contains the necessary parameters of the physical problem in the following manner:
 
-Length-of-x-side-in-the-domain Length-of-y-side-in-the-domain Length-of-z-side-in-the-domain
-Position-of-transmitter-in-x-direction Position-of-transmitter-in-y-direction Position-of-transmitter-in-z-direction*
-Ground-in-z-direction
-Background-resistivity
-Foreground-resistivity
-Frequency
+Length-of-x-side-in-the-domain Length-of-y-side-in-the-domain Length-of-z-side-in-the-domain  
+Position-of-transmitter-in-x-direction Position-of-transmitter-in-y-direction Position-of-transmitter-in-z-direction*  
+Ground-in-z-direction  
+Background-resistivity  
+Foreground-resistivity  
+Frequency  
 
 *Important Notice: The Position-of-transmitter-in-z-direction in the config file should be entered as a negative number which refers to the height of the transmitter above the ground. For instance, (the Position-of-transmitter-in-z-direction=) -22 value when the ground (Ground-in-z-direction) is set to 208 indicates the transmitter to be at 230.
 
