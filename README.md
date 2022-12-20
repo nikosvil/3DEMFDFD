@@ -21,7 +21,7 @@ Frequency
 
 Distance is given in m, resistivity in Ohm and frequency in Hz.
 
-***Important Notice**: TThe z component is assumed to be zero at the ground surface and positive towards the Earth. Thus, z means depth, which is positive below the ground surface and negative above it. The Position-of-transmitter-in-z-direction in the config file should be entered as a negative number when referring to the height of the transmitter above the ground surface. For instance, (the Position-of-transmitter-in-z-direction)= -22 value when the ground surface (Ground-in-z-direction) is set to 208 indicates that the transmitter is at 230.
+***Important Notice**: The z component is assumed to be zero at the ground surface and positive towards the Earth. Thus, z means depth, which is positive below the ground surface and negative above it. The Position-of-transmitter-in-z-direction in the config file should be entered as a negative number when referring to the height of the transmitter above the ground surface. For instance, (the Position-of-transmitter-in-z-direction)= -22 value when the ground surface (Ground-in-z-direction) is set to 208 indicates that the transmitter is at 230.
 
 The solver's parameters (tolerance and maximum number of steps for the iterative method) may be altered from within the main.f file located in halfspace folder.
 
