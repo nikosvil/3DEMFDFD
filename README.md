@@ -6,7 +6,7 @@ GAIA 3DEMFDFD is a 4th-order finite difference solver used for the approximation
 2. repo
 3. temp
 
-The first directory contains the Fortran files and the Makefile as well as the subdirectory Results where the approximation of each E component exist. The second directory contains key files that compute the primary electric field intensity in Matlab. The last directory is being used as a temporary files folder.
+The first directory contains the Fortran files and the Makefile as well as the subdirectory Results where the approximation of each E component exist. The second directory contains the file that computes the primary electric field intensity in Matlab. The last directory is being used as a temporary files folder.
 
 **Instructions**
 
