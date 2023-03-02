@@ -6,7 +6,7 @@ GAIA 3DEMFDFD is a 4th-order finite difference solver used for the approximation
 2. repo
 3. temp
 
-The first directory contains the Fortran files and the Makefile as well as the subdirectory Results where the approximation of each E component exist. The second directory contains the file that computes the primary electric field intensity in Matlab. The last directory is being used as a temporary files folder.
+The first directory contains the Fortran files and the Makefile as well as the subdirectory Results where the approximation of each E component and the Magnetic Field z-component at the end of the computation. The second directory contains key files that compute the primary electric field intensity in Matlab as well as scripts that convert the output E files to Matlab variables. The last directory is being used in as a temporary files folder.
 
 **Instructions**
 
@@ -21,8 +21,14 @@ Frequency
 
 Distance is given in m, resistivity in Ohm and frequency in Hz.
 
-***Important Notice**: The z component is assumed to be zero at the ground surface and positive towards the Earth. Thus, z means depth, which is positive below the ground surface and negative above it. The Position-of-transmitter-in-z-direction in the config file should be entered as a negative number when referring to the height of the transmitter above the ground surface. For instance, (the Position-of-transmitter-in-z-direction)= -22 value when the ground surface (Ground-in-z-direction) is set to 208 indicates that the transmitter is at 230.
+***Important Notices**:
+
+The Position-of-transmitter-in-z-direction in the config file should be entered as a negative number which refers to the height of the transmitter above the ground. For instance, (the Position-of-transmitter-in-z-direction=) -22 value when the ground (Ground-in-z-direction) is set to 208 indicates the transmitter to be at 230.
 
 The solver's parameters (tolerance and maximum number of steps for the iterative method) may be altered from within the main.f file located in halfspace folder.
 
+The gaia.sh script launches Matlab without the desktop and runs the necessary .m files using the matlab command from the shell. The user may need to modify the path in lines 106 and 123 of the gaia.sh script depending on the installation path and the Matlab version available.
+
+The Fortran compiler used is pgf90. Python3 should also be installed in the system for the post-processing conversion.
+ 
 To use the solver, provide the necessary parameters in the config.dat file as explained above and then run the command gaia.sh < config.dat**
