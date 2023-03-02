@@ -53,7 +53,6 @@
 
        istep=1
        errU=1.0d0
-c      print*,n,dznrm2(n,F1,1),dznrm2(n,F2,1)
        
        k=1
        do i=1,nx*(ny-1)*(nz-1)
@@ -70,11 +69,6 @@ c      print*,n,dznrm2(n,F1,1),dznrm2(n,F2,1)
        enddo
 
        nr=dznrm2(n,b,1)
-c      do i=1,n
-c       b(i)=dcmplx(0.0d0,0.0d0)
-c      enddo 
-c      nr=dznrm2(n,b,1)
-c      print*,'Norm b',dznrm2(size(b),b,1),size(b)
        call U_Mult(b,n,nx,ny,nz,hx,hy,hz,ci,
      +       e1,e2,e3,tempEX,tempEY,tempEZ,
      +       pt1,pt2,pt3,pt4,pt5,pt6,pt7,
@@ -178,10 +172,7 @@ c      print*,'Norm p_i',dznrm2(size(p_i),p_i,1),size(p_i)
        po_i2=po_i1
        errU=dznrm2(size(r_i1),r_i1,1)/nr
        istep=istep+1
-c      errU= errU/dfloat(n)
-c     print*,'************biU*************',errU,istep
       enddo
 
-      print*,'Exiting biU',istep,errU
       return
       end subroutine
