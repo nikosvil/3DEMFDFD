@@ -1,4 +1,3 @@
-c234567
         subroutine BS(q,nx,ny,nz,hx,hy,hz,ci,
      +              pt1,pt2,pt3,pt4,pt5,pt6,pt7,
      +              st1,st2,st3,st4,st5,st6,st7,
@@ -27,7 +26,9 @@ c234567
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny),
      +  q((nx-1)*ny*(nz-1))
 
-
+c Subroutine BS computes B*q=tempEX
+c Input: q((nx-1)*ny*(nz-1))
+c Output: tempEX(nx*(ny-1)*(nz-1))
 
 c       B*q=tB Evaluation
 c       B1*q=pt2 & S1*pt2=pt2
