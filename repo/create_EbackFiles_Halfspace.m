@@ -30,21 +30,11 @@ Ex = zeros(nx*(ny-1)*(nz-1),1);
 Ey = zeros((nx-1)*ny*(nz-1),1);
 ETX = zeros(nx*(ny-1)*(nz-1),1);
 ETY = zeros((nx-1)*ny*(nz-1),1);
-% SIGMAEX = zeros(nx*(ny-1)*(nz-1),1);
-% SIGMAEY = zeros((nx-1)*ny*(nz-1),1);
-% SIGMADiffEX = zeros(nx*(ny-1)*(nz-1),1);
-% SIGMADiffEY = zeros((nx-1)*ny*(nz-1),1);
-% SIGMAEZ = zeros((nx-1)*nz*(ny-1),1);
-%fileID2=fopen(sprintf('ExBack%s_Prim_%s_Sec_%s_f_%s.txt',int2str(nx),num2str(sigma0),num2str(sigma),int2str(f)),'w');
-%fileID3=fopen(sprintf('EyBack%s_Prim_%s_Sec_%s_f_%s.txt',int2str(nx),num2str(sigma0),num2str(sigma),int2str(f)),'w');
-%fileID6=fopen(sprintf('ETX%s_Prim_%s_Sec_%s_f_%s.txt',int2str(nx),num2str(sigma0),num2str(sigma),int2str(f)),'w');
-%fileID7=fopen(sprintf('ETY%s_Prim_%s_Sec_%s_f_%s.txt',int2str(nx),num2str(sigma0),num2str(sigma),int2str(f)),'w');
 fileID2=fopen('../temp/ExBack.txt','w');
 fileID3=fopen('../temp/EyBack.txt','w');
 fileID6=fopen('../temp/ETX.txt','w');
 fileID7=fopen('../temp/ETY.txt','w');
-%fileID8=fopen('../ETX.txt','w');
-%fileID9=fopen('../ETY.txt','w');
+
 
 if (0==0)
 % Create Ex Ey RHS of Main Diff Equations using given function
