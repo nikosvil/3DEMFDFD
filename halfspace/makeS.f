@@ -24,7 +24,6 @@ c     Below Ground
 c     Above Ground
           SIGMADiffEX(ik)=sigmaAIR
           SIGMAEX(ik)=sigmaAIR
-c         SIGMAEX(ik)=sigma
          endif
         enddo
        enddo
@@ -46,7 +45,6 @@ c     Above Ground
          else
           SIGMADiffEY(ik)=sigmaAIR
           SIGMAEY(ik)=sigmaAIR
-c         SIGMAEX(ik)=sigma
          endif
         enddo
        enddo
@@ -64,7 +62,6 @@ c SIGMA-EZ
           SIGMAEZ(ik)=sigma
          else
           SIGMAEZ(ik)=sigmaAIR
-c         SIGMAEX(ik)=sigma
          endif
         enddo
        enddo
