@@ -64,17 +64,10 @@ else
 fi
 
 exec 0>&1 1>&0
-# Read grid size from main.f
-nx=`grep -o nx=[0-9]*, ./halfspace/main.f | cut -c 4- | rev | cut -c 2- | rev`
-ny=`grep -o ny=[0-9]*, ./halfspace/main.f | cut -c 4- | rev | cut -c 2- | rev`
-nz=`grep -o nz=[0-9]*, ./halfspace/main.f | cut -c 4- | rev | cut -c 2- | rev`
-grid=$nx"x"$ny"x"$nz
-
-# Scheduled for removal
-#grid=`grep -o nx=[0-9]*, ./halfspace/main.f | cut -c 4- | rev | cut -c 2- | rev`\
-#"x"`grep -o ny=[0-9]*, ./halfspace/main.f | cut -c 4- | rev | cut -c 2- | rev`\
-#"x"`grep -o nz=[0-9]*, ./halfspace/main.f | cut -c 4- | rev | cut -c 2- | rev`
-
+# Read grid size
+grid=`grep -o nx=[0-9]*, ./halfspace/main.f | cut -c 4- | rev | cut -c 2- | rev`\
+"x"`grep -o ny=[0-9]*, ./halfspace/main.f | cut -c 4- | rev | cut -c 2- | rev`\
+"x"`grep -o nz=[0-9]*, ./halfspace/main.f | cut -c 4- | rev | cut -c 2- | rev`
 echo "Grid size now is: " $grid
 echo " "
    while true; do
@@ -90,6 +83,10 @@ echo " "
                sed -i 's/nx=[0-9]\+,/nx='$nx',/' ./halfspace/main.f;
                sed -i 's/ny=[0-9]\+,/ny='$ny',/' ./halfspace/main.f;
                sed -i 's/nz=[0-9]\+,/nz='$nz',/' ./halfspace/main.f;
+#              sed -i 's/ns=[0-9]\+;/ns='$nx';/' ./repo/create_EbackFiles_Halfspace.m;
+               sed -i 's/nx=[0-9]\+;/nx='$nx';/' ./repo/create_EbackFiles_Halfspace.m;
+               sed -i 's/ny=[0-9]\+;/ny='$ny';/' ./repo/create_EbackFiles_Halfspace.m;
+               sed -i 's/nz=[0-9]\+;/nz='$nz';/' ./repo/create_EbackFiles_Halfspace.m;
 grid=`grep -o nx=[0-9]*, ./halfspace/main.f | cut -c 4- | rev | cut -c 2- | rev`\
 "x"`grep -o ny=[0-9]*, ./halfspace/main.f | cut -c 4- | rev | cut -c 2- | rev`\
 "x"`grep -o nz=[0-9]*, ./halfspace/main.f | cut -c 4- | rev | cut -c 2- | rev`;
@@ -106,7 +103,7 @@ echo "Grid size now is: " $grid;
 # Start working processes
 echo `date`": Running Matlab..."
 cd repo
-./create_Ebackfiles_Halfspace $nx $ny $nz
+/usr/local/MATLAB/R2014b/bin/matlab -nodesktop -nosplash -r "run('create_EbackFiles_Halfspace.m');exit;" | tail -n +17
 cd ..
 echo `date`": Matlab finished."
 echo `date`": Running main exec with the following params:"
@@ -121,20 +118,22 @@ dirstr=./halfspace/Results/"$grid"/"$lx"_"$ly"_"$lz"/"$tx"_"$ty"_"$tz"_"$gl"/"${
 echo $dirstr
 mkdir -p $dirstr
 mkdir -p $dirstr/f2m
+cd repo
+python3 convert_files.py
+/usr/local/MATLAB/R2014b/bin/matlab -nodesktop -nosplash -r "run('convert_file_type.m');exit;" | tail -n +17
+cd ../
 echo `date`": Moving files..."
 mv ./temp/EX.txt $dirstr
 mv ./temp/EY.txt $dirstr
 mv ./temp/EZ.txt $dirstr
-mv ./temp/HZ.txt $dirstr
 mv ./temp/EtotalX.txt $dirstr
 mv ./temp/EtotalY.txt $dirstr
-mv ./temp/ETX.mat $dirstr/f2m
+mv ./temp/ETX.mat $dirstr/f2m 
 mv ./temp/ETY.mat $dirstr/f2m
-mv ./temp/Ex.mat $dirstr/f2m
+mv ./temp/Ex.mat $dirstr/f2m 
 mv ./temp/Ey.mat $dirstr/f2m
-mv ./temp/TotalEX.mat $dirstr/f2m
+mv ./temp/TotalEX.mat $dirstr/f2m 
 mv ./temp/TotalEY.mat $dirstr/f2m
-mv ./temp/Hz.mat $dirstr/f2m
 mv ./temp/info.txt $dirstr
 echo `date`": Cleaning up..."
 rm ./temp/*
