@@ -1,5 +1,4 @@
-c234567
-	  subroutine AS(q,nx,ny,nz,hx,hy,hz,ci,e1,
+        subroutine AS(q,nx,ny,nz,hx,hy,hz,ci,e1,
      +              pt1,pt2,pt3,pt4,pt5,pt6,pt7,
      +              st1,st2,st3,st4,st5,st6,st7,
      +              RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,RHS7,
@@ -29,6 +28,10 @@ c234567
      +  RHS7((nx-1)*(ny-1)*(2*nz-1)),
      +  temp1(nx*(ny-1)*(nz-1)),temp11(nx*(ny-1)*(nz-1)),
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny),zdotc
+     
+c Subroutine AS computes A*q=t1 
+c Input: q(nx*(ny-1)*(nz-1))
+c Output: tempEX(nx*(ny-1)*(nz-1))
 
 c       A*q=temp1 Evaluation
         call B_mult(q,5,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
