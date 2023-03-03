@@ -7,8 +7,10 @@
      +         temp2,temp22,
      +         tempEY)
 
-c     INPUT ARRAY q :  (nx-1)*ny*(nz-1)
-c     OUTPUT ARRAY tZ : (nx-1)*ny*(nz-1)
+! Subroutine ZS computes N*q=tempEZ
+! Input: q((nx-1)*ny*(nz-1))
+! Output: tempEY((nx-1)*ny*(nz-1))
+
         implicit none
         integer :: i,nx,ny,nz
         real*8  :: hx,hy,hz,
