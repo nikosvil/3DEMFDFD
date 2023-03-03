@@ -1,4 +1,3 @@
-c234567
       subroutine PS(q,nx,ny,nz,hx,hy,hz,ci,e3,
      +             pt1,pt2,pt3,pt4,pt5,pt6,pt7,
      +             st1,st2,st3,st4,st5,st6,st7,
@@ -8,7 +7,7 @@ c234567
      +             temp3,temp33,
      +             tempEZ)
 
-	implicit none
+      implicit none
       integer :: nx,ny,nz,i
       real*8  :: hx,hy,hz,MultVal1(*),MultVal2(*),MultVal3(*),dznrm2,
      +  a1(nx),b1(nx),c1(nx),a2(ny),b2(ny),c2(ny),a3(nz),b3(nz),c3(nz)
@@ -27,9 +26,11 @@ c234567
      +  tempEZ((nx-1)*(ny-1)*nz),
      +  temp3((nx-1)*(ny-1)*nz),temp33((nx-1)*(ny-1)*nz),
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny)
+     
+! Subroutine KS computes N*q=tempEZ
+! Input: q((nx-1)*(ny-1)*nz)
+! Output: tempEZ((nx-1)*(ny-1)*nz)
 
-
-c B19*q=pt5 S19*pt5=pt5
       call B_mult(q,19,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
       call S_solve(19,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,pt7,
@@ -78,6 +79,5 @@ c B17*q=pt3 S17*pt3=pt3
       enddo
 !$OMP END PARALLEL DO
 
-c     print*,'P OUT',dznrm2(size(q),q,1)
       return
       end
