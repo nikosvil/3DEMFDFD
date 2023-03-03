@@ -1,4 +1,3 @@
-c234567
         subroutine KS(q,nx,ny,nz,hx,hy,hz,ci,
      +              pt1,pt2,pt3,pt4,pt5,pt6,pt7,
      +              st1,st2,st3,st4,st5,st6,st7,
@@ -28,8 +27,10 @@ c234567
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny),
      +  q((nx-1)*(ny-1)*nz)
 
+! Subroutine KS computes K*q=tempEY
+! Input: q((nx-1)*(ny-1)*nz)
+! Output: tempEY((nx-1)*ny*(nz-1))
 
-c     K*tP=tK Evaluation
       call B_mult(q,15,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
       call S_solve(15,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,pt7,
