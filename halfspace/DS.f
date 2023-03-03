@@ -1,4 +1,3 @@
-c234567
         subroutine DS(q,nx,ny,nz,hx,hy,hz,ci,
      +              pt1,pt2,pt3,pt4,pt5,pt6,pt7,
      +              st1,st2,st3,st4,st5,st6,st7,
@@ -27,8 +26,10 @@ c234567
      +  RHS7((nx-1)*(ny-1)*(2*nz-1)),
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny)
 
+! Subroutine DS computes D*q=tempEY
+! Input: q(nx*(ny-1)*(nz-1))
+! Output: tempEY((nx-1)*ny*(nz-1))
 
-c     D*EX=tD Evaluation
         call B_mult(q,9,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
         call S_solve(3,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,pt7,
