@@ -19,6 +19,11 @@
      +  e1(nx*(ny-1)*(nz-1)),e2((nx-1)*ny*(nz-1)),e3((nx-1)*(ny-1)*nz),
      +  F1(nx*(ny-1)*(nz-1)),F2((nx-1)*ny*(nz-1))
       
+! Subroutine makeRHS computes the right hand side F of the main equation 
+! using the conductivity vectors (SIGMAEX, SIGMAEY and SIGMAEZ) computed by makeS 
+! and the primary electric field Ex, Ey values (ExBack and EyBack) computed by 
+! create_EbackFiles_Halfspace Matlab script
+
          open(10,file=trim(wpath)//'temp/ExBack.txt')
          open(11,file=trim(wpath)//'temp/EyBack.txt')
          do i=1,nx*(ny-1)*(nz-1)
