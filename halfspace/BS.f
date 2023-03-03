@@ -26,12 +26,11 @@
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny),
      +  q((nx-1)*ny*(nz-1))
 
-c Subroutine BS computes B*q=tempEX
-c Input: q((nx-1)*ny*(nz-1))
-c Output: tempEX(nx*(ny-1)*(nz-1))
+! Subroutine BS computes B*q=tempEX
+! Input: q((nx-1)*ny*(nz-1))
+! Output: tempEX(nx*(ny-1)*(nz-1))
 
-c       B*q=tB Evaluation
-c       B1*q=pt2 & S1*pt2=pt2
+
         call B_mult(q,1,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
         call S_solve(1,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,pt7,
