@@ -29,11 +29,10 @@
      +  temp1(nx*(ny-1)*(nz-1)),temp11(nx*(ny-1)*(nz-1)),
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny),zdotc
      
-c Subroutine AS computes A*q=t1 
-c Input: q(nx*(ny-1)*(nz-1))
-c Output: tempEX(nx*(ny-1)*(nz-1))
+! Subroutine AS computes A*q=tempEX
+! Input: q(nx*(ny-1)*(nz-1))
+! Output: tempEX(nx*(ny-1)*(nz-1))
 
-c       A*q=temp1 Evaluation
         call B_mult(q,5,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
         call S_solve(5,nx,ny,nz,
      +           pt1,pt2,pt3,pt4,pt5,pt6,pt7,
