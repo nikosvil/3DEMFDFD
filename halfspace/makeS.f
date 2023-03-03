@@ -9,8 +9,10 @@
      +          SIGMAEZ((nx-1)*(ny-1)*nz),SIGMADiffEX(nx*(ny-1)*(nz-1)),
      +          SIGMADiffEY((nx-1)*ny*(nz-1)),dnrm2
 
-! Subroutine makeS computes the necessary conductivity vector coefficients σx, σy, σz
+! Subroutine makeS computes the necessary conductivity vector coefficients 
+! σx (SIGMAEX), σy (SIGMAEY), σz (SIGMAEZ)
 ! depending on the values of σ (sigma) and σ0  (sigma0) and the ground level (gl)
+! set by the user
 
 c SIGMA-EX
 !$OMP PARALLEL DO PRIVATE(ik,zcounter) SHARED(SIGMAEX,SIGMADiffEX)
