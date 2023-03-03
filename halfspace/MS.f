@@ -1,4 +1,3 @@
-c234567
 	subroutine MS(q,nx,ny,nz,hx,hy,hz,ci,
      +             pt1,pt2,pt3,pt4,pt5,pt6,pt7,
      +             st1,st2,st3,st4,st5,st6,st7,
@@ -8,7 +7,7 @@ c234567
      +             tempEZ)
 
 	implicit none
-      integer :: nx,ny,nz,i
+        integer :: nx,ny,nz,i
 	real*8  :: hx,hy,hz,MultVal1(*),MultVal2(*),MultVal3(*),dznrm2,
      +  a1(nx),b1(nx),c1(nx),a2(ny),b2(ny),c2(ny),a3(nz),b3(nz),c3(nz)
 	complex*16 :: tempEZ((nx-1)*(ny-1)*nz),
@@ -26,8 +25,10 @@ c234567
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny),
      +  q(nx*(ny-1)*(nz-1)),ci
 
+! Subroutine MS computes M*q=tempEY
+! Input: q(nx*(ny-1)*(nz-1))
+! Output: tempEZ((nx-1)*(ny-1)*nz)
 
-c M*EX=tM Evaluation
 	call B_mult(q,5,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
 	call S_solve(5,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,pt7,
