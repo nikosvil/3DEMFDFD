@@ -6,10 +6,10 @@
      +                   a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
 
 c  S_solve subroutine computes the solution of the linear system
-c  Snum*tnew=y using Cyclic Reduction
+c  Snum*tnew=yi using Cyclic Reduction
 
-c  Input Arguments: y, nx, ny, nz
-c  Output Arguments: tnew==y
+!  Input: y, nx, ny, nz
+!  Output: tnew==yi i=1,..7
 
       implicit none
       real*8, parameter :: pi=4.0d0*datan(1.0d0)
