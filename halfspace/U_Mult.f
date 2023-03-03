@@ -1,4 +1,3 @@
-c234567
       subroutine U_Mult(b,n,nx,ny,nz,hx,hy,hz,ci,
      +      e1,e2,e3,tempEX,tempEY,tempEZ,
      +      pt1,pt2,pt3,pt4,pt5,pt6,pt7,
@@ -11,8 +10,9 @@ c234567
      +      tempEY_1,tempEY_2,tempEY_3,
      +      tempEZ_1,tempEZ_2,tempEZ_3,
      +      temp)
-c Evaluate [A-C*inv(P)*M+(C*inv(P)*N-B)*inv(Z-k*inv(P)*N)*(D-K*inv(P)*M)]*q output
-c     q :  nx*(ny-1)*(nz-1)
+
+! Subroutine U_Mult contains the subroutines that perform the 
+! multiplications Up=u and Uq=v during the BiCGSTAB
 
         implicit none
         integer:: nx,ny,nz,i,n,k
@@ -136,6 +136,7 @@ c Line 3
      +       tempEZ_3)
 
         call cpu_time(t1)
+	
 !$OMP PARALLEL DO
         do i=1,nx*(ny-1)*(nz-1)
          temp(i)=tempEX_1(i)+tempEX_2(i)+tempEX_3(i)
