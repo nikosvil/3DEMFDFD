@@ -26,7 +26,10 @@
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny),
      +  q((nx-1)*(ny-1)*nz)
 
-! Subroutine CS computes 
+! Subroutine CS computes C*q=tempEX
+! Input: q((nx-1)*(ny-1)*nz)
+! Output: tempEX(nx*(ny-1)*(nz-1))
+
       call B_mult(q,7,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
       call S_solve(7,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,pt7,
@@ -35,7 +38,6 @@
      +             MultVal1,MultVal2,MultVal3,
      +             a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
 
-c     B8*pt3=pt1 & S8*pt1=pt1
         call B_mult(pt3,8,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
         call S_solve(8,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,pt7,
