@@ -6,7 +6,7 @@ GAIA 3DEMFDFD is a 4th-order finite difference solver used for the approximation
 2. repo
 3. temp
 
-The first directory contains the Fortran files and the Makefile as well as the subdirectory Results where the approximation of each E component and the Magnetic Field z-component at the end of the computation. The second directory contains key files that compute the primary electric field intensity in Matlab as well as scripts that convert the output E files to Matlab variables. The last directory is being used in as a temporary files folder.
+The first directory contains the Fortran files and the Makefile as well as the subdirectory Results where the approximation of each E component is saved on .txt files at the end of the computation. The second directory contains key files that compute the primary electric field intensity in Matlab as well as scripts that convert the output E files to Matlab variables. The last directory is being used in as a temporary files folder.
 
 **Instructions**
 
@@ -32,3 +32,8 @@ The gaia.sh script launches Matlab without the desktop and runs the necessary .m
 The Fortran compiler used is pgf90. Python3 should also be installed in the system for the post-processing conversion.
  
 To use the solver, provide the necessary parameters in the config.dat file as explained above and then run the command gaia.sh < config.dat**
+
+***Parameters of the implementation**:
+
+The main.f contains the parameters of the solver (maximum number of steps of the iterative method, tolerance) and fixed parameters like magnetic permeability and air resistivity which may be modified as desired.
+
