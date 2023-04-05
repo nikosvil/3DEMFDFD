@@ -8,7 +8,7 @@
      +          hx,hy,hz,pi
        character(64):: wpath
 
-! Subroutine params parses the problem physical parameters from config.dat
+! Subroutine params.f parses the problem physical parameters from config.dat
 
         open(1,file=trim(wpath)//"config.dat")
         read(1,*) Lx,Ly,Lz
