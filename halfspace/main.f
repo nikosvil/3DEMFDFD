@@ -22,7 +22,8 @@
      + realETY((nx-1)*ny*(nz-1)),imagETY((nx-1)*ny*(nz-1)),
      + MultVal1(5*lgx),MultVal2(5*lgy),MultVal3(5*lgz),
      + a1(nx),b1(nx),c1(nx),a2(ny),b2(ny),c2(ny),a3(nz),b3(nz),c3(nz),
-     + PosTx,PosTy,PosTz,sigma0,sigma,gl,hx,hy,hz,omega
+     + PosTx,PosTy,PosTz,sigma0,sigma,gl,hx,hy,hz,omega,
+     + ti1,ti2,tstart,tfinish
       complex*16:: ci, 
      + ExBack(nx*(ny-1)*(nz-1)),EX(nx*(ny-1)*(nz-1)),
      + ETX(nx*(ny-1)*(nz-1)),EtotalX(nx*(ny-1)*(nz-1)),
@@ -63,7 +64,7 @@
       call getarg(1,wpath)
       call params(nx,ny,nz,Lx,Ly,Lz,hx,hy,hz,f,omega,pi,
      +            sigma0,sigma,sigmaAIR,
-     +            PosTx,PosTy,PosTz,gl,Scen,tolU,maxstepU,
+     +            PosTx,PosTy,PosTz,gl,tolU,maxstepU,
      +            wpath)        
       call cpu_time(tstart)
       ci=dcmplx(0.0d0,1.0d0)
