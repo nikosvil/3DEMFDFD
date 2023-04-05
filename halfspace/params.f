@@ -1,6 +1,6 @@
       subroutine params(nx,ny,nz,Lx,Ly,Lz,hx,hy,hz,f,omega,pi,
      +                 sigma0,sigma,sigmaAIR,
-     +                 PosTx,PosTy,PosTz,gl,Scen,tolU,maxstepU,
+     +                 PosTx,PosTy,PosTz,gl,tolU,maxstepU,
      +                 wpath)
 
        integer:: f,nx,ny,nz,Lx,Ly,Lz,maxstepU
