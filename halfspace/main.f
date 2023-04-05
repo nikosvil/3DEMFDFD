@@ -10,10 +10,8 @@
      +                    m0=4.0d0*pi*1.0d-7, 
      +                    tolU=1.0d-16,
      +                    sigmaAIR=1.0d-8
-      character(64):: date,Scen,wpath,iargc
-      integer:: i,j,ik,ix,iy,iz,num_threads,MaxThreads,
-     +          omp_get_max_threads,omp_get_num_threads,
-     +          Lx,Ly,Lz,f
+      character(64):: date,wpath,iargc
+      integer:: i,j,ik,ix,iy,iz,Lx,Ly,Lz,f
       real*8:: SIGMAEX(nx*(ny-1)*(nz-1)),SIGMADiffEX(nx*(ny-1)*(nz-1)),
      + SIGMAEY((nx-1)*ny*(nz-1)),SIGMADiffEY((nx-1)*ny*(nz-1)),
      + SIGMAEZ((nx-1)*nz*(ny-1)),
