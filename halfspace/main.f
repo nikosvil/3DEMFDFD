@@ -146,16 +146,18 @@
        do i=1,(nx-1)*ny*(nz-1)
         write(17,*) EtotalY(i)
        enddo
-       write(18,*) nx,ny,nz
-       write(18,*) Lx,Ly,Lz
-       write(18,*) PosTx,PosTy,PosTz
-       write(18,*) gl
-       write(18,*) sigma
-       write(18,*) sigma0
-       write(18,*) f 
-       write(18,*) sigmaAIR
-       write(18,*) tolU 
-       write(18,*) maxstepU 
+       write(18,*) 'Total Time', tfinish-tstart
+       write(18,*) 'Cells per Direction', nx,ny,nz
+       write(18,*) 'Discretization step', hx,hy,hz
+       write(18,*) 'Rectangular Dimensions', Lx,Ly,Lz
+       write(18,*) 'Transmitter at', PosTx,PosTy,PosTz
+       write(18,*) 'Ground Line', gl
+       write(18,*) 'Conductivity', sigma
+       write(18,*) 'Background Conductivity', sigma0
+       write(18,*) 'Frequency', f 
+       write(18,*) 'Air conductivity', sigmaAIR
+       write(18,*) 'BiCGSTAB tolerance', tolU 
+       write(18,*) 'BiCGSTAB maximum steps', maxstepU 
       
        close(12) 
        close(13) 
