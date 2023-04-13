@@ -41,7 +41,7 @@ The gaia.sh script launches Matlab without the desktop and runs the necessary .m
 
 The Fortran compiler used is pgf90 (PGI compilers are free to download and use). Python3 should also be installed in the system for the post-processing conversion.
  
-To use the solver, provide the necessary parameters in the config.dat file as explained above and then run the command gaia.sh < config.dat**
+To use the solver, provide the necessary parameters in the config.dat file as explained above and then run the command **gaia.sh < config.dat**
 
 At the end of the program's execution, the results are being written in .txt files (EtotalX.txt, EtotalY.txt, EX.txt, EY.txt, EZ.txt) and .mat files (ETX.mat, ETY.mat, Ex.mat, Ey.mat, TotalEX.mat, TotalEY.mat in the f2m folder) for further process. EX, EY and EZ (Ex, Ey respectively) refer to the values of the secondary electric field components, EtotalX and EtotalY (TotalEX and TotalEY respectively) refer to the total electric field (background + secondary) and ETX, ETY are the analytical solution values of the components. File info.txt contains information on the problem's parameters and total execution time.
 
