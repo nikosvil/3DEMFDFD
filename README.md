@@ -22,12 +22,12 @@ Frequency
 
 Example:
 
-640 640 640
-320 320 -22
-208
-0.001
-0.01
-3000
+640 640 640  
+320 320 -22  
+208  
+0.001  
+0.01  
+3000  
 
 Distance is given in m, resistivity in Ohm and frequency in Hz.
 
