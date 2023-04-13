@@ -1,0 +1,14 @@
+ Total Time    96.71853709220886     
+ Cells per Direction           32           32           32
+ Discretization step    20.00000000000000         20.00000000000000      
+    20.00000000000000     
+ Rectangular Dimensions          640          640          640
+ Transmitter at    320.0000000000000         320.0000000000000      
+   -32.00000000000000     
+ Ground Line    208.0000000000000     
+ Conductivity   1.0000000000000000E-002
+ Background Conductivity   1.0000000000000000E-003
+ Frequency         3000
+ Air conductivity   1.0000000000000000E-008
+ BiCGSTAB tolerance   9.9999999999999998E-017
+ BiCGSTAB maximum steps         1000
