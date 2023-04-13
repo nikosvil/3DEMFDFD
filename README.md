@@ -42,7 +42,7 @@ The gaia.sh script launches Matlab without the desktop and runs the necessary .m
 The Fortran compiler used is pgf90 (PGI compilers are free to download and use). Python3 should also be installed in the system for the post-processing conversion.
  
 To use the solver, provide the necessary parameters in the config.dat file as explained above and then run the command **gaia.sh < config.dat**
-***Before running the program for the first time, user needs to modify the execution permission of the .sh file using the command chmod +x gaia.sh
+*Before running the program for the first time, user needs to modify the execution permission of the .sh file using the command **chmod +x gaia.sh**
 
 The program has a 20m uniform partition preset (in a 640x640x640 cube model). Thus, a message notifies the user of the 32x32x32 discretization. To change the discretization, press c and enter the new number of cells in each direction as instructed by the script.
 
