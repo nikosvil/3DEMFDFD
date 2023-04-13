@@ -42,6 +42,9 @@ The gaia.sh script launches Matlab without the desktop and runs the necessary .m
 The Fortran compiler used is pgf90 (PGI compilers are free to download and use). Python3 should also be installed in the system for the post-processing conversion.
  
 To use the solver, provide the necessary parameters in the config.dat file as explained above and then run the command **gaia.sh < config.dat**
+***Before running the program for the first time, user needs to modify the execution permission of the .sh file using the command chmod +x gaia.sh
+
+The program has a 20m uniform partition preset (in a 640x640x640 cube model). Thus, a message notifies the user of the 32x32x32 discretization. To change the discretization, press c and enter the new number of cells in each direction as instructed by the script.
 
 At the end of the program's execution, the results are being written in .txt files (EtotalX.txt, EtotalY.txt, EX.txt, EY.txt, EZ.txt) and .mat files (ETX.mat, ETY.mat, Ex.mat, Ey.mat, TotalEX.mat, TotalEY.mat in the f2m folder) for further process. EX, EY and EZ (Ex, Ey respectively) refer to the values of the secondary electric field components, EtotalX and EtotalY (TotalEX and TotalEY respectively) refer to the total electric field (background + secondary) and ETX, ETY are the analytical solution values of the components. File info.txt contains information on the problem's parameters and total execution time.
 
