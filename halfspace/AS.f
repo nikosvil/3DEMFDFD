@@ -44,8 +44,8 @@
 ! ny: number of elements in y-direction
 ! nz: number of elements in z-direction
 ! hx: discretization step in x-direction
-! hy: discretization step  in y-direction
-! hz: discretization step  in z-direction
+! hy: discretization step in y-direction
+! hz: discretization step in z-direction
 ! e1: complex array, dimension nx*(ny-1)*(nz-1)
 ! Output:
 ! tempEX: complex array, dimension nx*(ny-1)*(nz-1)
