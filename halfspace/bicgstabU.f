@@ -71,10 +71,22 @@
 ! e3: complex array, dimension: (nx-1)*(ny-1)*nz
 ! F1: complex array, dimension: nx*(ny-1)*(nz-1)
 ! F2: complex array, dimension: (nx-1)*ny*(nz-1)  
+! maxstepU: maximum number of iterations to be performed
+! tolU: method's tolerance
+! Local auxiliary variables:
+! v_i,r_i1,rh,p_i,t,s,x_i1,b0
+! Auxiliary variables used by other subroutines:
+! pt1,pt2,pt3,pt4,pt5,pt6,pt7,st1,st2,st3,st4,st5,st6,st7
+! RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,RHS7
+! MultVal1,MultVal2,MultVal3
+! a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2
+! temp1,temp11,temp2,temp22,temp3,temp33
+! tempEX,tempEY,tempEZ
+! tempEX_1,tempEY_1,tempEZ_1
+! tempEX_2,tempEY_2,tempEZ_2
+! tempEX_3,tempEY_3,tempEZ_3
 ! Output:
 ! x: complex array, dimension: n
-! Auxiliary variables:
-! 
 !==================================================================== 
        istep=1
        errU=1.0d0
