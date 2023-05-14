@@ -7,9 +7,27 @@
      +         temp2,temp22,
      +         tempEY)
 
-! Subroutine ZS computes N*q=tempEZ
-! Input: q((nx-1)*ny*(nz-1))
-! Output: tempEY((nx-1)*ny*(nz-1))
+! ===================================================================
+! Title: ZS.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! ZS.f performs the multiplication Z*q=tempEY
+! by performing the operations between terms that make up block Z 
+! of matrix U and the input array q
+!====================================================================      
+! Input:
+! q: complex array, dimension (nx-1)*ny*(nz-1)
+! nx: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
+! hx: discretization step in x-direction
+! hy: discretization step in y-direction
+! hz: discretization step in z-direction
+! e2: complex array, dimension (nx-1)*ny*(nz-1)
+! Output:
+! tempEY: complex array, dimension (nx-1)*ny*(nz-1)
+!==================================================================== 
 
         implicit none
         integer :: i,nx,ny,nz
