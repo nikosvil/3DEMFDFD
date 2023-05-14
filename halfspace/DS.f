@@ -26,9 +26,26 @@
      +  RHS7((nx-1)*(ny-1)*(2*nz-1)),
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny)
 
-! Subroutine DS computes D*q=tempEY
-! Input: q(nx*(ny-1)*(nz-1))
-! Output: tempEY((nx-1)*ny*(nz-1))
+! ===================================================================
+! Title: MS.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! DS.f performs the multiplication D*q=tempEY
+! by performing the operations between terms that make up block D 
+! of matrix U and the input array q
+!====================================================================      
+! Input:
+! q: complex array, dimension nx*(ny-1)*(nz-1)
+! nx: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
+! hx: discretization step in x-direction
+! hy: discretization step in y-direction
+! hz: discretization step in z-direction
+! Output:
+! tempEY: complex array, dimension (nx-1)*ny*(nz-1)
+!==================================================================== 
 
         call B_mult(q,9,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
         call S_solve(3,nx,ny,nz,
