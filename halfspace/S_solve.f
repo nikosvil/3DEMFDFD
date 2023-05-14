@@ -22,13 +22,13 @@
 ! nx: number of elements in x-direction
 ! ny: number of elements in y-direction
 ! nz: number of elements in z-direction
+! *and one of the following arrays depending on the Snum index*
 ! tnew1: complex array, dimension nx*(ny-1)*(nz-1)
 ! tnew2: complex array, dimension nx*ny*(nz-1)
 ! tnew3: complex array, dimension nx*(ny-1)*nz
 ! tnew4: complex array, dimension (nx-1)*ny*(nz-1)
 ! tnew5: complex array, dimension (nx-1)*ny*nz
 ! tnew6: complex array, dimension(nx-1)*(ny-1)*nz
-! tnew7: complex array, dimension(nx-1)*(ny-1)*(nz-1)
 
 ! Local auxiliary variables:
 ! RHS1: complex array, dimension (2*nx-1)*ny*(nz-1)
@@ -37,7 +37,6 @@
 ! RHS4: complex array, dimension (nx-1)*(2*ny-1)*nz
 ! RHS5: complex array, dimension (nx-1)*ny*(2*nz-1)
 ! RHS6: complex array, dimension nx*(ny-1)*(2*nz-1)
-! RHS7: complex array, dimension (nx-1)*(ny-1)*(2*nz-1)
 ! MultVal1: real array, dimension 5*int(dlog(dfloat(nx))/dlog(2.0d0))
 ! MultVal2: real array, dimension 5*int(dlog(dfloat(ny))/dlog(2.0d0))
 ! MultVal3: real array, dimension 5*int(dlog(dfloat(nz))/dlog(2.0d0))
@@ -54,13 +53,13 @@
 ! sv2: real array, dimension (nx-1)*ny
 ! sv: real scalar
 ! Output:
+! *One of the following arrays depending on the Snum index*
 ! y1: complex array, dimension nx*(ny-1)*(nz-1)
 ! y2: complex array, dimension nx*ny*(nz-1))
 ! y3: complex array, dimension nx*(ny-1)*nz
 ! y4: complex array, dimension (nx-1)*ny*(nz-1)
 ! y5: complex array, dimension (nx-1)*ny*nz
 ! y6: complex array, dimension (nx-1)*(ny-1)*nz
-! y7: complex array, dimension (nx-1)*(ny-1)*(nz-1)
 !==================================================================== 
 
 
@@ -79,11 +78,9 @@
      + tnew4((nx-1)*ny*(nz-1)),y4((nx-1)*ny*(nz-1)),
      + tnew5((nx-1)*ny*nz),y5((nx-1)*ny*nz),
      + tnew6((nx-1)*(ny-1)*nz),y6((nx-1)*(ny-1)*nz), 
-     + tnew7((nx-1)*(ny-1)*(nz-1)),y7((nx-1)*(ny-1)*(nz-1)), 
      + RHS1((2*nx-1)*ny*(nz-1)),RHS2(nx*(2*ny-1)*(nz-1)), 
      + RHS3((2*nx-1)*(ny-1)*nz),RHS4((nx-1)*(2*ny-1)*nz),
      + RHS5((nx-1)*ny*(2*nz-1)),RHS6(nx*(ny-1)*(2*nz-1)),
-     + RHS7((nx-1)*(ny-1)*(2*nz-1)),
      + sv1(nx*(ny-1)),sv2((nx-1)*ny),sv
 
       if (Snum.eq.1) then
