@@ -9,11 +9,32 @@
      +          SIGMAEZ((nx-1)*(ny-1)*nz),SIGMADiffEX(nx*(ny-1)*(nz-1)),
      +          SIGMADiffEY((nx-1)*ny*(nz-1)),dnrm2
 
-! Subroutine makeS computes the necessary conductivity vector coefficients 
+
+! ===================================================================
+! Title: makeS.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! makeS.f computes the necessary conductivity vector coefficients 
 ! σx (SIGMAEX), σy (SIGMAEY), σz (SIGMAEZ)
 ! depending on the values of σ (sigma) and σ0  (sigma0) and the ground level (gl)
-! set by the user
-
+! specified by the user in config.dat file
+!====================================================================      
+! Input:
+! nx: number of elements in x-direction
+! ny: number of elements in x-direction
+! nz: number of elements in x-direction
+! gl: ground level in the cuboid
+! sigma: conductivity 
+! sigma0: background conductivity
+! sigmaAIR: conductivity of the air
+! Output:
+! SIGMAEX: conductivity σ in Ex nodes, dimension: nx*(ny-1)*(nz-1)
+! SIGMAEY: conductivity σ in Ey nodes, dimension: (nx-1)*ny*(nz-1) 
+! SIGMAEZ: conductivity σ in Ez nodes, dimension: (nx-1)*(ny-1)*nz
+! SIGMADiffEX: Difference between conductivity σ and background conductivity σ0 in Ex nodes, dimension: nx*(ny-1)*(nz-1)
+! SIGMADiffEY: Difference between conductivity σ and background conductivity σ0 in Ey nodes, dimension: (nx-1)*ny*(nz-1) 
+!==================================================================== 
 c SIGMA-EX
 !$OMP PARALLEL DO PRIVATE(ik,zcounter) SHARED(SIGMAEX,SIGMADiffEX)
       do iz=1,nz-1
