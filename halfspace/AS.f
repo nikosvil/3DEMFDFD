@@ -29,9 +29,27 @@
      +  temp1(nx*(ny-1)*(nz-1)),temp11(nx*(ny-1)*(nz-1)),
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny),zdotc
      
-! Subroutine AS computes A*q=tempEX
-! Input: q(nx*(ny-1)*(nz-1))
-! Output: tempEX(nx*(ny-1)*(nz-1))
+! ===================================================================
+! Title: AS.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! AS.f performs the multiplication A*q=tempEX
+! by performing the operations between terms that make up block A 
+! of matrix U and the input array q
+!====================================================================      
+! Input:
+! q: complex array, dimension nx*(ny-1)*(nz-1)
+! nx: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
+! hx: discretization step in x-direction
+! hy: discretization step  in y-direction
+! hz: discretization step  in z-direction
+! e1: complex array, dimension nx*(ny-1)*(nz-1)
+! Output:
+! tempEX: complex array, dimension nx*(ny-1)*(nz-1)
+!==================================================================== 
 
         call B_mult(q,5,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
         call S_solve(5,nx,ny,nz,
