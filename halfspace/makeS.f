@@ -22,8 +22,8 @@
 !====================================================================      
 ! Input:
 ! nx: number of elements in x-direction
-! ny: number of elements in x-direction
-! nz: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
 ! gl: ground level in the cuboid
 ! sigma: conductivity 
 ! sigma0: background conductivity
