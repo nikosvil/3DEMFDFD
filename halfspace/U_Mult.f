@@ -11,9 +11,6 @@
      +      tempEZ_1,tempEZ_2,tempEZ_3,
      +      temp)
 
-! Subroutine U_Mult contains the subroutines that perform the 
-! multiplications Up=u and Uq=v during the BiCGSTAB
-
         implicit none
         integer:: nx,ny,nz,i,n,k
         real*8:: hx,hy,hz,dznrm2,t1,t2,
@@ -45,7 +42,30 @@
      +  tempEZ((nx-1)*(ny-1)*nz),  tempEZ_1((nx-1)*(ny-1)*nz),
      +  tempEZ_2((nx-1)*(ny-1)*nz),tempEZ_3((nx-1)*(ny-1)*nz),
      +  temp(n)
-c********************************************************
+! ===================================================================
+! Title: U_Mult.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! U_Mult.f successively calls proper subroutines to perform the
+! multiplication between the blocks of matrix U and the 
+! respective vectors (as described in manuscript) during the
+! implementation of the BiCGSTAB method
+!====================================================================      
+! Input:
+! b: complex array, dimension n
+! nx: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
+! hx: discretization step in x-direction
+! hy: discretization step in y-direction
+! hz: discretization step in z-direction
+! e1: complex array, dimension nx*(ny-1)*(nz-1), passed to subroutine AS.f
+! e2: complex array, dimension (nx-1)*ny*(nz-1), passed to subroutine ZS.f
+! e3: complex array, dimension (nx-1)*(ny-1)*nz, passed to subroutine PS.f
+! Output:
+! temp: complex array, dimension n
+!====================================================================
 
 c Line 1
 
