@@ -30,7 +30,7 @@
 ! Authors: N. Vilanakis, E. Mathioudakis
 ! Details: Applied Mathematics and Computers Lab, Technical University of Crete
 !====================================================================
-! NS.f performs the multiplication N*q=tempEY
+! NS.f performs the multiplication N*q=tempEZ
 ! by performing the operations between terms that make up block N 
 ! of matrix U and the input array q
 !====================================================================      
@@ -42,9 +42,8 @@
 ! hx: discretization step in x-direction
 ! hy: discretization step in y-direction
 ! hz: discretization step in z-direction
-! e2: complex array, dimension (nx-1)*ny*(nz-1)
 ! Output:
-! tempEY: complex array, dimension (nx-1)*ny*(nz-1)
+! tempEZ: complex array, dimension (nx-1)*(ny-1)*nz
 !==================================================================== 
 
 	  call B_mult(q,13,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
@@ -64,7 +63,7 @@
 
 !$OMP PARALLEL DO
 	  do i=1,(nx-1)*(ny-1)*nz
-         tempEZ(i)=(24.0d0/(hy*hz))*pt6(i)
+           tempEZ(i)=(24.0d0/(hy*hz))*pt6(i)
 	  enddo
 !$OMP END PARALLEL DO
 
