@@ -34,8 +34,8 @@
 !====================================================================      
 ! Input:
 ! nx: number of elements in x-direction
-! ny: number of elements in x-direction
-! nz: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
 ! omega: angular frequency
 ! m0: magnetic permeability 
 ! SIGMAEX: conductivity σ in Ex nodes, dimension: nx*(ny-1)*(nz-1)
