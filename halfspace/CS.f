@@ -26,9 +26,26 @@
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny),
      +  q((nx-1)*(ny-1)*nz)
 
-! Subroutine CS computes C*q=tempEX
-! Input: q((nx-1)*(ny-1)*nz)
-! Output: tempEX(nx*(ny-1)*(nz-1))
+! ===================================================================
+! Title: CS.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! CS.f performs the multiplication C*q=tempEX
+! by performing the operations between terms that make up block C
+! of matrix U and the input array q
+!====================================================================      
+! Input:
+! q: complex array, dimension (nx-1)*(ny-1)*nz
+! nx: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
+! hx: discretization step in x-direction
+! hy: discretization step in y-direction
+! hz: discretization step in z-direction
+! Output:
+! tempEX: complex array, dimension nx*(ny-1)*(nz-1)
+!==================================================================== 
 
       call B_mult(q,7,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
       call S_solve(7,nx,ny,nz,
