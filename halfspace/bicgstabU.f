@@ -72,7 +72,7 @@
 ! F1: complex array, dimension: nx*(ny-1)*(nz-1)
 ! F2: complex array, dimension: (nx-1)*ny*(nz-1)  
 ! maxstepU: maximum number of iterations to be performed
-! tolU: method's tolerance
+! tolU: tolerance of the method
 ! Local auxiliary variables:
 ! v_i,r_i1,rh,p_i,t,s,x_i1,b0
 ! Auxiliary variables used by other subroutines:
