@@ -25,9 +25,26 @@
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny),
      +  q(nx*(ny-1)*(nz-1)),ci
 
-! Subroutine MS computes M*q=tempEY
-! Input: q(nx*(ny-1)*(nz-1))
-! Output: tempEZ((nx-1)*(ny-1)*nz)
+! ===================================================================
+! Title: MS.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! MS.f performs the multiplication M*q=tempEY
+! by performing the operations between terms that make up block M 
+! of matrix U and the input array q
+!====================================================================      
+! Input:
+! q: complex array, dimension nx*(ny-1)*(nz-1)
+! nx: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
+! hx: discretization step in x-direction
+! hy: discretization step in y-direction
+! hz: discretization step in z-direction
+! Output:
+! tempEZ: complex array, dimension (nx-1)*(ny-1)*nz
+!==================================================================== 
 
 	call B_mult(q,5,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
 	call S_solve(5,nx,ny,nz,
