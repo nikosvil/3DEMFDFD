@@ -18,11 +18,42 @@
       complex*16:: ci,ExBack(nx*(ny-1)*(nz-1)),EyBack((nx-1)*ny*(nz-1)),
      +  e1(nx*(ny-1)*(nz-1)),e2((nx-1)*ny*(nz-1)),e3((nx-1)*(ny-1)*nz),
      +  F1(nx*(ny-1)*(nz-1)),F2((nx-1)*ny*(nz-1))
-      
-! Subroutine makeRHS computes the right hand side F of the main equation 
-! using the conductivity vectors (SIGMAEX, SIGMAEY and SIGMAEZ) computed by makeS 
-! and the primary electric field Ex, Ey values (ExBack and EyBack) computed by 
-! create_EbackFiles_Halfspace Matlab script
+     
+! ===================================================================
+! Title: makeRHS.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! makeRHS.f computes the right hand side vectors F1 and F2 of equations
+! AEx+BEy+CEz=F1 and DEx+ZEy+KEz=F2
+! and coefficients e1,e2,e3 needed in subroutines AS.f,ZS.f,PS.f
+! using the conductivity values computed by makeS.f 
+! (in vectors SIGMAEX, SIGMAEY, SIGMAEZ and SIGMADiffEX,SIGMADiffEY) 
+! and the background electric field values (in vectors ExBack and EyBack) 
+! computed by create_EbackFiles_Halfspace Matlab script
+!====================================================================      
+! Input:
+! nx: number of elements in x-direction
+! ny: number of elements in x-direction
+! nz: number of elements in x-direction
+! omega: angular frequency
+! m0: magnetic permeability 
+! SIGMAEX: conductivity σ in Ex nodes, dimension: nx*(ny-1)*(nz-1)
+! SIGMAEY: conductivity σ in Ey nodes, dimension: (nx-1)*ny*(nz-1) 
+! SIGMAEZ: conductivity σ in Ez nodes, dimension: (nx-1)*(ny-1)*nz
+! SIGMADiffEX: Difference between conductivity σ and background conductivity σ0 in Ex nodes, dimension: nx*(ny-1)*(nz-1)
+! SIGMADiffEY: Difference between conductivity σ and background conductivity σ0 in Ey nodes, dimension: (nx-1)*ny*(nz-1) 
+! ExBack: Background electric field intensity Ex, dimension: nx*(ny-1)*(nz-1)
+! EyBack: Background electric field intensity Ey, dimension: (nx-1)*ny*(nz-1) 
+! Output:
+! e1: i*omega*m0*SIGMAEX, dimension: nx*(ny-1)*(nz-1)
+! e2: i*omega*m0*SIGMAEY, dimension: (nx-1)*ny*(nz-1) 
+! e3: i*omega*m0*SIGMAEZ, dimension: (nx-1)*(ny-1)*nz
+! F1: Right-hand side of equation 1 (refers to Ex nodes), dimension: nx*(ny-1)*(nz-1)
+! F2: Right-hand side of equation 1 (refers to Ey nodes), dimension: (nx-1)*ny*(nz-1) 
+!==================================================================== 
+
+
 
          open(10,file=trim(wpath)//'temp/ExBack.txt')
          open(11,file=trim(wpath)//'temp/EyBack.txt')
@@ -38,32 +69,32 @@
          close(11)
          print*,'ExBack - EyBack copied'
 
-c       Compute F1
+!       Compute F1
 !$OMP PARALLEL
 !$OMP DO
       do i=1,nx*(ny-1)*(nz-1)
        F1(i)=-ci*omega*m0*SIGMADiffEX(i)*ExBack(i)
       enddo
 !$OMP END DO
-c       Compute F2
+!       Compute F2
 !$OMP DO
       do i=1,(nx-1)*ny*(nz-1)
        F2(i)=-ci*omega*m0*SIGMADiffEY(i)*EyBack(i)
       enddo
 !$OMP END DO
-
+!       Compute e1 coefficient used in subroutine AS.f
 !$OMP DO
       do i=1,nx*(ny-1)*(nz-1)
        e1(i) = ci*omega*m0*SIGMAEX(i)
       enddo
 !$OMP END DO
-
+!       Compute e2 coefficient used in subroutine ZS.f
 !$OMP DO
       do i=1,(nx-1)*ny*(nz-1)
        e2(i) = ci*omega*m0*SIGMAEY(i)
       enddo
 !$OMP END DO
-
+!       Compute e3 coefficient used in subroutine PS.f
 !$OMP DO
       do i=1,(nx-1)*(ny-1)*nz
        e3(i) = ci*omega*m0*SIGMAEZ(i)
