@@ -5,11 +5,64 @@
      +                   MultVal1,MultVal2,MultVal3,
      +                   a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
 
-c  S_solve subroutine computes the solution of the linear system
-c  Snum*tnew=yi using Cyclic Reduction
+! ===================================================================
+! Title: S_solve.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! S_solve.f computes the solution tnew of the linear system Snum*tnew=yi
+! using classic Cyclic Reduction or the Fourier-based Cyclic Reduction
+! depending on the structure of the Snum matrix
+! Each time the subroutine is being called, integer input Snum specifies
+! which operation is being performed using the proper input y array
+! and returning the respective tnew array
+!====================================================================      
+! Input:
+! Snum: index which refers to the respective S matrix
+! nx: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
+! tnew1: complex array, dimension nx*(ny-1)*(nz-1)
+! tnew2: complex array, dimension nx*ny*(nz-1)
+! tnew3: complex array, dimension nx*(ny-1)*nz
+! tnew4: complex array, dimension (nx-1)*ny*(nz-1)
+! tnew5: complex array, dimension (nx-1)*ny*nz
+! tnew6: complex array, dimension(nx-1)*(ny-1)*nz
+! tnew7: complex array, dimension(nx-1)*(ny-1)*(nz-1)
 
-!  Input: y, nx, ny, nz
-!  Output: tnew==yi i=1,..7
+! Local auxiliary variables:
+! RHS1: complex array, dimension (2*nx-1)*ny*(nz-1)
+! RHS2: complex array, dimension nx*(2*ny-1)*(nz-1)
+! RHS3: complex array, dimension (2*nx-1)*(ny-1)*nz
+! RHS4: complex array, dimension (nx-1)*(2*ny-1)*nz
+! RHS5: complex array, dimension (nx-1)*ny*(2*nz-1)
+! RHS6: complex array, dimension nx*(ny-1)*(2*nz-1)
+! RHS7: complex array, dimension (nx-1)*(ny-1)*(2*nz-1)
+! MultVal1: real array, dimension 5*int(dlog(dfloat(nx))/dlog(2.0d0))
+! MultVal2: real array, dimension 5*int(dlog(dfloat(ny))/dlog(2.0d0))
+! MultVal3: real array, dimension 5*int(dlog(dfloat(nz))/dlog(2.0d0))
+! a1: real array, dimension nx
+! a2: real array, dimension ny
+! a3: real array, dimension nz
+! b1: real array, dimension nx
+! b2: real array, dimension ny
+! b3: real array, dimension nz
+! c1: real array, dimension nx
+! c2: real array, dimension ny
+! c3: real array, dimension nz
+! sv1: real array, dimension nx*(ny-1)
+! sv2: real array, dimension (nx-1)*ny
+! sv: real scalar
+! Output:
+! y1: complex array, dimension nx*(ny-1)*(nz-1)
+! y2: complex array, dimension nx*ny*(nz-1))
+! y3: complex array, dimension nx*(ny-1)*nz
+! y4: complex array, dimension (nx-1)*ny*(nz-1)
+! y5: complex array, dimension (nx-1)*ny*nz
+! y6: complex array, dimension (nx-1)*(ny-1)*nz
+! y7: complex array, dimension (nx-1)*(ny-1)*(nz-1)
+!==================================================================== 
+
 
       implicit none
       real*8, parameter :: pi=4.0d0*datan(1.0d0)
