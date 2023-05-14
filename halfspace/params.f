@@ -8,7 +8,31 @@
      +          hx,hy,hz,pi
        character(64):: wpath
 
-! Subroutine params.f parses the problem physical parameters from config.dat
+! ===================================================================
+! Title: params.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! params.f parses the models physical parameters from config.dat and
+! returns them to main.f
+!====================================================================      
+! Input:
+! nx: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
+! Output:
+! Lx: length of edge in x-direction
+! Ly: length of edge in y-direction
+! Lz: length of edge in z-direction
+! hx: discretization step in x-direction
+! hy: discretization step  in y-direction
+! hz: discretization step  in z-direction
+! sigma: conductivity 
+! sigma0: background conductivity
+! sigmaAIR: conductivity of the air
+! f: frequency
+! omega: angular frequency
+!==================================================================== 
 
         open(1,file=trim(wpath)//"config.dat")
         read(1,*) Lx,Ly,Lz
