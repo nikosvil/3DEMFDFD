@@ -57,11 +57,21 @@
      + sv1(nx*(ny-1)),sv2((nx-1)*ny),
      + bcg1(n),bcg2(n),bcg3(n),bcg4(n),bcg5(n),bcg6(n),bcg7(n),
      + bcg8(n),E(n)
-
+! ===================================================================
+! Title: 3D Finite Difference Frequency Domain Electromagnetic Solver 
+! Authors: N. Vilanakis, E. Mathioudakis
+!====================================================================
+! main.f is the main Fortran file of the 3D FD EM solver 
+! Throughout main.f several subroutines are successively being called
+! in order to input model physical parameters and background electric field
+! intensity, perform the computation of the Ex,Ey,Ez components of the 
+! residual electric field in a 3D Cartesian domain and output the
+! resulting arrays and runtime details. 
+!====================================================================
       call date_and_time(date)
       
       wpath=iargc()
-      call getarg(1,wpath)
+      call getarg(1,wpath)    
       call params(nx,ny,nz,Lx,Ly,Lz,hx,hy,hz,f,omega,pi,
      +            sigma0,sigma,sigmaAIR,
      +            PosTx,PosTy,PosTz,gl,tolU,maxstepU,
