@@ -27,9 +27,27 @@
      +  temp3((nx-1)*(ny-1)*nz),temp33((nx-1)*(ny-1)*nz),
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny)
      
-! Subroutine KS computes N*q=tempEZ
-! Input: q((nx-1)*(ny-1)*nz)
-! Output: tempEZ((nx-1)*(ny-1)*nz)
+! ===================================================================
+! Title: PS.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! PS.f performs the multiplication P*q=tempEZ
+! by performing the operations between terms that make up block P 
+! of matrix U and the input array q
+!====================================================================      
+! Input:
+! q: complex array, dimension (nx-1)*(ny-1)*nz
+! nx: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
+! hx: discretization step in x-direction
+! hy: discretization step in y-direction
+! hz: discretization step in z-direction
+! e3: complex array, dimension (nx-1)*(ny-1)*nz
+! Output:
+! tempEZ: complex array, dimension (nx-1)*(ny-1)*nz
+!==================================================================== 
 
       call B_mult(q,19,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
       call S_solve(19,nx,ny,nz,
