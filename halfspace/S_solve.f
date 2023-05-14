@@ -1,7 +1,7 @@
 	subroutine S_solve(Snum,nx,ny,nz,
-     +                   tnew1,tnew2,tnew3,tnew4,tnew5,tnew6,tnew7,
-     +                   y1,y2,y3,y4,y5,y6,y7,
-     +                   RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,RHS7,
+     +                   tnew1,tnew2,tnew3,tnew4,tnew5,tnew6,
+     +                   y1,y2,y3,y4,y5,y6,
+     +                   RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,
      +                   MultVal1,MultVal2,MultVal3,
      +                   a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
 
