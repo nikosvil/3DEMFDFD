@@ -27,9 +27,26 @@
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny),
      +  q((nx-1)*(ny-1)*nz)
 
-! Subroutine KS computes K*q=tempEY
-! Input: q((nx-1)*(ny-1)*nz)
-! Output: tempEY((nx-1)*ny*(nz-1))
+! ===================================================================
+! Title: KS.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! MS.f performs the multiplication K*q=tempEY
+! by performing the operations between terms that make up block K
+! of matrix U and the input array q
+!====================================================================      
+! Input:
+! q: complex array, dimension (nx-1)*(ny-1)*nz
+! nx: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
+! hx: discretization step in x-direction
+! hy: discretization step in y-direction
+! hz: discretization step in z-direction
+! Output:
+! tempEY: complex array, dimension (nx-1)*ny*(nz-1)
+!==================================================================== 
 
       call B_mult(q,15,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
       call S_solve(15,nx,ny,nz,
