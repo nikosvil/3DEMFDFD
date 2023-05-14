@@ -50,7 +50,32 @@
      + sv1(nx*(ny-1)),sv2((nx-1)*ny),
      + v_i(n),r_i1(n),rh(n),p_i(n),b(n),t(n),s(n),x_i1(n),x(n),
      + b0(n)
-
+! ===================================================================
+! Title: bicgstabU.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! bicgstabU.f implements the BiCGSTAB iterative method for the
+! solution of the linear system UE=b
+!====================================================================      
+! Input:
+! n: total number of elements in the grid
+! nx: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
+! hx: discretization step in x-direction
+! hy: discretization step in y-direction
+! hz: discretization step in z-direction
+! e1: complex array, dimension: nx*(ny-1)*(nz-1)
+! e2: complex array, dimension: (nx-1)*ny*(nz-1) 
+! e3: complex array, dimension: (nx-1)*(ny-1)*nz
+! F1: complex array, dimension: nx*(ny-1)*(nz-1)
+! F2: complex array, dimension: (nx-1)*ny*(nz-1)  
+! Output:
+! x: complex array, dimension: n
+! Auxiliary variables:
+! 
+!==================================================================== 
        istep=1
        errU=1.0d0
        
