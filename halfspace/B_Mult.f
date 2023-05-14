@@ -1,5 +1,5 @@
       subroutine B_Mult(t,tag,nx,ny,nz,
-     +                  tnew1,tnew2,tnew3,tnew4,tnew5,tnew6,tnew7)
+     +                  tnew1,tnew2,tnew3,tnew4,tnew5,tnew6)
 c B_mult subroutine performs the multiplication of Matrix B_tag with
 c vector t producing vector tnew
       implicit none
@@ -11,7 +11,6 @@ c vector t producing vector tnew
      +  tnew4((nx-1)*ny*(nz-1)),
      +  tnew5((nx-1)*ny*nz),
      +  tnew6((nx-1)*(ny-1)*nz),
-     +  tnew7((nx-1)*(ny-1)*(nz-1))
 
 c**********************************************
 c B1*t=tnew2 tnew2:nx*ny*(nz-1), t:(nx-1)*ny*(nz-1)
