@@ -1,10 +1,3 @@
-	subroutine S_solve(Snum,nx,ny,nz,
-     +                   tnew1,tnew2,tnew3,tnew4,tnew5,tnew6,
-     +                   y1,y2,y3,y4,y5,y6,
-     +                   RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,
-     +                   MultVal1,MultVal2,MultVal3,
-     +                   a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
-
 ! ===================================================================
 ! Title: S_solve.f 
 ! Authors: N. Vilanakis, E. Mathioudakis
@@ -67,6 +60,13 @@
 ! tnew5: complex array, dimension (nx-1)*ny*nz
 ! tnew6: complex array, dimension(nx-1)*(ny-1)*nz
 !==================================================================== 
+	subroutine S_solve(Snum,nx,ny,nz,
+     +                   tnew1,tnew2,tnew3,tnew4,tnew5,tnew6,
+     +                   y1,y2,y3,y4,y5,y6,
+     +                   RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,
+     +                   MultVal1,MultVal2,MultVal3,
+     +                   a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
+
 
       implicit none
       real*8, parameter :: pi=4.0d0*datan(1.0d0)
@@ -89,7 +89,7 @@
      + sv1(nx*(ny-1)),sv2((nx-1)*ny),sv
 
 !==================================================================== 
-! S1*tnew2=tnew2 tnew2: nx*ny*(nz-1)
+! Solves S1*tnew2=tnew2 using classic CR
 !==================================================================== 
       if (Snum.eq.1) then
 !$omp parallel do
@@ -214,7 +214,7 @@ c MultVal Complete
 !$omp end parallel do
 
 !==================================================================== 
-! S2*tnew1=tnew1 tnew1: nx*(ny-1)*(nz-1)
+! Solves S2*tnew1=tnew1 using classic Fourier-based CR
 !==================================================================== 
       elseif (Snum.eq.2) then
  
@@ -252,7 +252,7 @@ c MultVal Complete
        enddo
 
 !==================================================================== 
-! S3*tnew2=tnew2 tnew2: 
+! Solves S3*tnew2=tnew2 using classic CR
 !==================================================================== 
 	elseif (Snum.eq.3) then
 !$omp parallel do
@@ -266,7 +266,7 @@ c MultVal Complete
      +    tnew2((i-1)*nx*ny+1:i*nx*ny)
        enddo
 !$omp end parallel do
-c
+
 !$omp parallel do
 	 do i=1,size(tnew2)
          tnew2(i)=dcmplx(0.0d0,0.0d0)
@@ -278,8 +278,8 @@ c
        enddo
 !$omp end parallel do
 
-	 k=int(dlog(dfloat(ny))/dlog(2.0d0))
-c       k=lgy
+       k=int(dlog(dfloat(ny))/dlog(2.0d0))
+
 
        do iz=1,nz-1
         do i = 1,ny
@@ -408,7 +408,7 @@ c  Multval complete
 !$omp end parallel do
 
 !==================================================================== 
-! S4*tnew1=tnew1 tnew1: 
+! Solves S4*tnew1=tnew1 using Fourier-based CR
 !==================================================================== 
 	elseif (Snum.eq.4) then
 	
@@ -438,10 +438,10 @@ c  Multval complete
        enddo
       enddo
 !$omp end parallel do
+
 !==================================================================== 
-! S5*tnew3=tnew3 tnew3: 
+! Solves S5*tnew3=tnew3 using classic CR 
 !==================================================================== 
-c S5 ###############################################################
 	elseif (Snum.eq.5) then
 !$omp parallel do
        do i=1,size(RHS6)
@@ -575,7 +575,7 @@ c MultVal complete
       enddo
 
 !==================================================================== 
-! S6*tnew1=tnew1 tnew1: 
+! Solves S6*tnew1=tnew1 using Fourier-based CR
 !==================================================================== 
 	elseif (Snum.eq.6) then
        
@@ -614,7 +614,7 @@ c MultVal complete
        enddo
        
 !==================================================================== 
-! S7*tnew3=tnew3 tnew3: 
+! Solves S7*tnew3=tnew3 using classic CR
 !==================================================================== 
 	elseif (Snum.eq.7) then
 !$omp parallel do
@@ -738,7 +738,7 @@ c MultVal complete
 !$omp end parallel do 
 
 !==================================================================== 
-! S8*tnew1=tnew1 tnew1: 
+! Solves S8*tnew1=tnew1 using Fourier-based CR 
 !==================================================================== 
 	elseif (Snum.eq.8) then
 
@@ -774,7 +774,7 @@ c MultVal complete
        enddo
 
 !==================================================================== 
-! S9*tnew2=tnew2 tnew2: 
+! Solves S9*tnew2=tnew2 using classic CR
 !==================================================================== 
 	elseif (Snum.eq.9) then
 !$omp parallel do 
@@ -918,7 +918,7 @@ c MultVal complete
 !$omp end parallel do
 
 !==================================================================== 
-! S10*tnew4=tnew4 tnew4: 
+! Solves S10*tnew4=tnew4 using Fourier-based CR
 !==================================================================== 
 	elseif (Snum.eq.10) then
         
@@ -948,7 +948,7 @@ c MultVal complete
 !$omp end parallel do 
 
 !==================================================================== 
-! S11*tnew2=tnew2 tnew2: 
+! Solves S11*tnew2=tnew2 using classic CR
 !==================================================================== 
 	elseif (Snum.eq.11) then
 !$omp parallel do 
@@ -1075,7 +1075,7 @@ c MultVal complete
 !$omp end parallel do
 
 !==================================================================== 
-! S12*tnew4=tnew4 tnew4: 
+! Solves S12*tnew4=tnew4 using Fourier-based CR 
 !==================================================================== 
 	elseif (Snum.eq.12) then
 
@@ -1105,7 +1105,7 @@ c MultVal complete
 !$omp end parallel do
 
 !==================================================================== 
-! S13*tnew5=tnew5 tnew5: 
+! Solves S13*tnew5=tnew5 using classic CR
 !==================================================================== 
 	elseif (Snum.eq.13) then
 !$omp parallel do 
@@ -1243,7 +1243,7 @@ c Multval complete
       enddo
 
 !==================================================================== 
-! S14*tnew4=tnew4 tnew4: 
+! Solves S14*tnew4=tnew4 using Fourier-based CR
 !==================================================================== 
 	elseif (Snum.eq.14) then
         
@@ -1283,7 +1283,7 @@ c	 print*,dznrm2(size(y4),y4,1)
     	 enddo
 
 !==================================================================== 
-! S15*tnew5=tnew5 tnew5: 
+! Solves S15*tnew5=tnew5 using classic CR
 !==================================================================== 
 	elseif (Snum.eq.15) then
 !$omp parallel do 
@@ -1443,7 +1443,7 @@ c tnew evaluation
 !$omp end parallel do
  
 !==================================================================== 
-! S16*tnew4=tnew4 tnew4: 
+! Solves S16*tnew4=tnew4 using Fourier-based CR
 !==================================================================== 
 	elseif (Snum.eq.16) then
 
@@ -1480,7 +1480,7 @@ c tnew evaluation
        enddo
 	 
 !==================================================================== 
-! S17*tnew3=tnew3 tnew3: 
+! Solves S17*tnew3=tnew3 using classic CR
 !==================================================================== 
 	elseif (Snum.eq.17) then
 
@@ -1609,7 +1609,7 @@ c MultVal complete
 !$omp end parallel do
 
 !==================================================================== 
-! S18*tnew6=tnew6 tnew6: 
+! Solves S18*tnew6=tnew6 using Fourier-based CR
 !==================================================================== 
 	elseif (Snum.eq.18) then
 
@@ -1638,7 +1638,7 @@ c MultVal complete
        enddo
 !$omp end parallel do 
 !==================================================================== 
-! S19*tnew5=tnew5 tnew5: 
+! Solves S19*tnew5=tnew5 using classic CR
 !==================================================================== 
 	elseif (Snum.eq.19) then
 
@@ -1803,10 +1803,9 @@ c        k=lgy
 !$omp end parallel do
 
 !==================================================================== 
-! S20*tnew6=tnew6 tnew6: 
+! Solves S20*tnew6=tnew6 using Fourier-based CR
 !==================================================================== 
 	elseif (Snum.eq.20) then
-
          call zcopy(size(tnew6),tnew6,1,y6,1)
 !$omp parallel do 
 	 do i=1,size(tnew6)
