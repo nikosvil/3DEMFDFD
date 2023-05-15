@@ -14,8 +14,8 @@
 ! using classic Cyclic Reduction or the Fourier-based Cyclic Reduction
 ! depending on the structure of the Snum matrix
 ! Each time the subroutine is being called, integer input Snum specifies
-! which operation is being performed using the proper input y array
-! and returning the respective tnew array
+! which operation is being performed using the input y array with the 
+! proper dimensions and returning the respective tnew array
 !====================================================================      
 ! Input:
 ! Snum: index which refers to the respective S matrix
@@ -83,6 +83,7 @@
      + RHS5((nx-1)*ny*(2*nz-1)),RHS6(nx*(ny-1)*(2*nz-1)),
      + sv1(nx*(ny-1)),sv2((nx-1)*ny),sv
 
+! Solve the S1*tnew2=y1
       if (Snum.eq.1) then
 !$omp parallel do
        do i=1,size(RHS1)
