@@ -35,20 +35,20 @@
 !====================================================================      
 ! Input:
 ! q: complex array, dimension (nx-1)*ny*(nz-1)
-! nx: number of elements in x-direction
-! ny: number of elements in y-direction
-! nz: number of elements in z-direction
-! hx: discretization step in x-direction
-! hy: discretization step in y-direction
-! hz: discretization step in z-direction
+! nx: integer, number of elements in x-direction
+! ny: integer, number of elements in y-direction
+! nz: integer, number of elements in z-direction
+! hx: real, discretization step in x-direction
+! hy: real, discretization step in y-direction
+! hz: real, discretization step in z-direction
 ! Output:
 ! tempEX: complex array, dimension nx*(ny-1)*(nz-1)
 !==================================================================== 
 
-! B1*q=
+! B1*q=pt2
 !====================================================================
         call B_mult(q,1,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6)
-! S1*q=
+! S1*pt2=pt2
 !====================================================================
         call S_solve(1,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,
@@ -57,10 +57,10 @@
      +             MultVal1,MultVal2,MultVal3,
      +             a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
      
-! B2*q=
+! B2*pt2=pt1
 !====================================================================
         call B_mult(pt2,2,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6)
-! S4*q=
+! S4*pt1=pt1
 !====================================================================
         call S_solve(4,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,
