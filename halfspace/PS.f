@@ -47,14 +47,23 @@
 ! tempEZ: complex array, dimension (nx-1)*(ny-1)*nz
 !==================================================================== 
 
+! B19*q=
+!====================================================================
       call B_mult(q,19,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6)
+! S19*=
+!====================================================================
       call S_solve(19,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,
      +             st1,st2,st3,st4,st5,st6,
      +             RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,
      +             MultVal1,MultVal2,MultVal3,
      +             a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
+
+! B20*pt5=
+!====================================================================
       call B_mult(pt5,20,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,pt7)
+! S20*=
+!====================================================================
       call S_solve(20,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,
      +             st1,st2,st3,st4,st5,st6,
@@ -68,21 +77,29 @@
       enddo
 !$OMP END PARALLEL DO
 
-c B17*q=pt3 S17*pt3=pt3
+! B17*q=pt3
+!====================================================================
       call B_mult(q,17,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6)
+! S17*pt3=pt3
+!====================================================================
       call S_solve(17,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,
      +             st1,st2,st3,st4,st5,st6,
      +             RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,
      +             MultVal1,MultVal2,MultVal3,
      +             a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
+! B18*pt3=
+!====================================================================
       call B_mult(pt3,18,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6)
+! S18*=
+!====================================================================
       call S_solve(18,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,
      +             st1,st2,st3,st4,st5,st6,
      +             RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,
      +             MultVal1,MultVal2,MultVal3,
      +             a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
+     
 !$OMP PARALLEL DO
       do i=1,(nx-1)*(ny-1)*nz
         temp33(i)=(24.0d0/hx**2)*pt6(i)
