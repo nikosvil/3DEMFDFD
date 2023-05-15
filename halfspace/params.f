@@ -17,21 +17,21 @@
 ! returns them to main.f
 !====================================================================      
 ! Input:
-! nx: number of elements in x-direction
-! ny: number of elements in y-direction
-! nz: number of elements in z-direction
+! nx: integer, number of elements in x-direction
+! ny: integer, number of elements in y-direction
+! nz: integer, number of elements in z-direction
 ! Output:
-! Lx: length of edge in x-direction
-! Ly: length of edge in y-direction
-! Lz: length of edge in z-direction
-! hx: discretization step in x-direction
-! hy: discretization step  in y-direction
-! hz: discretization step  in z-direction
-! sigma: conductivity 
-! sigma0: background conductivity
-! sigmaAIR: conductivity of the air
-! f: frequency
-! omega: angular frequency
+! Lx: integer, length of edge in x-direction
+! Ly: integer, length of edge in y-direction
+! Lz: integer, length of edge in z-direction
+! hx: real, discretization step in x-direction
+! hy: real, discretization step  in y-direction
+! hz: real, discretization step  in z-direction
+! sigma: real, conductivity 
+! sigma0: real, background conductivity
+! sigmaAIR: real, conductivity of the air
+! f: integer, frequency
+! omega: real, angular frequency
 !==================================================================== 
 
         open(1,file=trim(wpath)//"config.dat")
