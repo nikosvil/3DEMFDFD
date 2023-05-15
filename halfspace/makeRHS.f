@@ -53,9 +53,9 @@
      +  F1(nx*(ny-1)*(nz-1)),F2((nx-1)*ny*(nz-1))
 
 !==================================================================== 
-! Open .txt created by MATLAB create_EbackFiles script
-! and decouple real and imaginary part of the electric 
-! field components
+! Open .txt files created by MATLAB create_EbackFiles script, read
+! real and imaginary part of the electric field components and 
+! create the background electric field vectors at Ex and Ey nodes
 !====================================================================  
          open(10,file=trim(wpath)//'temp/ExBack.txt')
          open(11,file=trim(wpath)//'temp/EyBack.txt')
