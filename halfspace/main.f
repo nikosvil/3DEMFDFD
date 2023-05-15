@@ -70,22 +70,31 @@
       
       wpath=iargc()
       call getarg(1,wpath)    
+! Read parameters of the model from config.dat
+!====================================================================
       call params(nx,ny,nz,Lx,Ly,Lz,hx,hy,hz,f,omega,pi,
      +            sigma0,sigma,sigmaAIR,
      +            PosTx,PosTy,PosTz,gl,tolU,maxstepU,
      +            wpath)        
       call cpu_time(tstart)
       ci=dcmplx(0.0d0,1.0d0)
+! Assign conductivity values on each node
+!====================================================================
       call makeS(nx,ny,nz,hz,gl,
      +           SIGMAEX,SIGMAEY,SIGMAEZ,sigmaAIR,sigma,sigma0,
      +           SIGMADiffEX,SIGMADiffEY)
-
+     
+! Create the RHS of the linear system UE=b where b=[F1;F2;0]
+!====================================================================
       call makeRHS(nx,ny,nz,omega,m0,ci,wpath,
      +        SIGMAEX,SIGMAEY,SIGMAEZ,SIGMADiffEX,SIGMADiffEY,
      +        realExBack,imagExBack,realEyBack,imagEyBack,ExBack,EyBack,
      +        e1,e2,e3,F1,F2)
 
       call cpu_time(ti1)
+      
+! Solve the linear system UE=b using the BiCGSTAB method
+!====================================================================
       call bicgstabU(n,nx,ny,nz,hx,hy,hz,ci,
      +     e1,e2,e3,F1,F2,
      +     temp1,temp11,temp2,temp22,temp3,temp33,
@@ -102,6 +111,9 @@
      +     bcg1,bcg2,bcg3,bcg4,bcg5,bcg6,bcg7,bcg8,
      +     E)
       call cpu_time(ti2)
+!====================================================================      
+! Split E array to EX, EY and EZ
+!====================================================================
 
 !$OMP PARALLEL
 !$OMP DO
@@ -118,6 +130,10 @@
       enddo
 !$OMP END PARALLEL
 
+!====================================================================
+! Compute total electric field components
+!====================================================================
+
 !$OMP PARALLEL
 !$OMP DO
       do i=1,nx*(ny-1)*(nz-1)
@@ -129,6 +145,7 @@
       enddo
 !$OMP END PARALLEL
 
+!====================================================================
       call cpu_time(tfinish)
 
        open(12, file=trim(wpath)//'temp/EX.txt')
