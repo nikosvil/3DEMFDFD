@@ -33,24 +33,24 @@
 ! computed by create_EbackFiles_Halfspace Matlab script
 !====================================================================      
 ! Input:
-! nx: number of elements in x-direction
-! ny: number of elements in y-direction
-! nz: number of elements in z-direction
-! omega: angular frequency
-! m0: magnetic permeability 
-! SIGMAEX: conductivity σ in Ex nodes, dimension: nx*(ny-1)*(nz-1)
-! SIGMAEY: conductivity σ in Ey nodes, dimension: (nx-1)*ny*(nz-1) 
-! SIGMAEZ: conductivity σ in Ez nodes, dimension: (nx-1)*(ny-1)*nz
-! SIGMADiffEX: Difference between conductivity σ and background conductivity σ0 in Ex nodes, dimension: nx*(ny-1)*(nz-1)
-! SIGMADiffEY: Difference between conductivity σ and background conductivity σ0 in Ey nodes, dimension: (nx-1)*ny*(nz-1) 
-! ExBack: Background electric field intensity Ex, dimension: nx*(ny-1)*(nz-1)
-! EyBack: Background electric field intensity Ey, dimension: (nx-1)*ny*(nz-1) 
+! nx: integer, number of elements in x-direction
+! ny: integer, number of elements in y-direction
+! nz: integer, number of elements in z-direction
+! omega: real, angular frequency
+! m0: real,magnetic permeability 
+! SIGMAEX: real array, conductivity σ in Ex nodes, dimension: nx*(ny-1)*(nz-1)
+! SIGMAEY: real array, conductivity σ in Ey nodes, dimension: (nx-1)*ny*(nz-1) 
+! SIGMAEZ: real array, conductivity σ in Ez nodes, dimension: (nx-1)*(ny-1)*nz
+! SIGMADiffEX: real array, Difference between conductivity σ and background conductivity σ0 in Ex nodes, dimension: nx*(ny-1)*(nz-1)
+! SIGMADiffEY: real array, Difference between conductivity σ and background conductivity σ0 in Ey nodes, dimension: (nx-1)*ny*(nz-1) 
+! ExBack: complex array, Background electric field intensity Ex, dimension: nx*(ny-1)*(nz-1)
+! EyBack: complex array, Background electric field intensity Ey, dimension: (nx-1)*ny*(nz-1) 
 ! Output:
-! e1: i*omega*m0*SIGMAEX, dimension: nx*(ny-1)*(nz-1)
-! e2: i*omega*m0*SIGMAEY, dimension: (nx-1)*ny*(nz-1) 
-! e3: i*omega*m0*SIGMAEZ, dimension: (nx-1)*(ny-1)*nz
-! F1: Right-hand side of equation 1 (refers to Ex nodes), dimension: nx*(ny-1)*(nz-1)
-! F2: Right-hand side of equation 1 (refers to Ey nodes), dimension: (nx-1)*ny*(nz-1) 
+! e1: complex array, i*omega*m0*SIGMAEX, dimension: nx*(ny-1)*(nz-1)
+! e2: complex array, i*omega*m0*SIGMAEY, dimension: (nx-1)*ny*(nz-1) 
+! e3: complex array, i*omega*m0*SIGMAEZ, dimension: (nx-1)*(ny-1)*nz
+! F1: complex array, Right-hand side of equation 1 (refers to Ex nodes), dimension: nx*(ny-1)*(nz-1)
+! F2: complex array, Right-hand side of equation 1 (refers to Ey nodes), dimension: (nx-1)*ny*(nz-1) 
 !==================================================================== 
 
 
