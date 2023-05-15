@@ -49,15 +49,22 @@
      +  temp2((nx-1)*ny*(nz-1)),temp22((nx-1)*ny*(nz-1)),
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny)
 
-
+! B13*q=
+!====================================================================
       call B_mult(q,13,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6)
+! S13*=pt5
+!====================================================================
       call S_solve(13,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,
      +             st1,st2,st3,st4,st5,st6,
      +             RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,
      +             MultVal1,MultVal2,MultVal3,
      +             a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
+! B14*pt5=
+!====================================================================
         call B_mult(pt5,14,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6)
+! S14*=
+!====================================================================
         call S_solve(14,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,
      +             st1,st2,st3,st4,st5,st6,
@@ -71,14 +78,23 @@
         enddo
 !$OMP END PARALLEL DO
 
+! B11*q=
+!====================================================================
         call B_mult(q,11,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6)
+! S11*=
+!====================================================================
         call S_solve(11,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,
      +             st1,st2,st3,st4,st5,st6,
      +             RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,
      +             MultVal1,MultVal2,MultVal3,
      +             a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
+     
+! B12*pt2=
+!====================================================================
         call B_mult(pt2,12,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6)
+! S12*=
+!====================================================================
         call S_solve(12,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,
      +             st1,st2,st3,st4,st5,st6,
