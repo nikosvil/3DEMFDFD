@@ -1,13 +1,3 @@
-      subroutine params(nx,ny,nz,Lx,Ly,Lz,hx,hy,hz,f,omega,pi,
-     +                 sigma0,sigma,sigmaAIR,
-     +                 PosTx,PosTy,PosTz,gl,tolU,maxstepU,
-     +                 wpath)
-
-       integer:: f,nx,ny,nz,Lx,Ly,Lz,maxstepU
-       real*8:: PosTx,PosTy,PosTz,gl,sigma0,sigma,sigmaAIR,tolU,omega,
-     +          hx,hy,hz,pi
-       character(64):: wpath
-
 ! ===================================================================
 ! Title: params.f 
 ! Authors: N. Vilanakis, E. Mathioudakis
@@ -33,6 +23,15 @@
 ! f: integer, frequency
 ! omega: real, angular frequency
 !==================================================================== 
+      subroutine params(nx,ny,nz,Lx,Ly,Lz,hx,hy,hz,f,omega,pi,
+     +                 sigma0,sigma,sigmaAIR,
+     +                 PosTx,PosTy,PosTz,gl,tolU,maxstepU,
+     +                 wpath)
+
+       integer:: f,nx,ny,nz,Lx,Ly,Lz,maxstepU
+       real*8:: PosTx,PosTy,PosTz,gl,sigma0,sigma,sigmaAIR,tolU,omega,
+     +          hx,hy,hz,pi
+       character(64):: wpath
 
         open(1,file=trim(wpath)//"config.dat")
         read(1,*) Lx,Ly,Lz
