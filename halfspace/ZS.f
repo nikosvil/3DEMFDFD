@@ -18,12 +18,12 @@
 !====================================================================      
 ! Input:
 ! q: complex array, dimension (nx-1)*ny*(nz-1)
-! nx: number of elements in x-direction
-! ny: number of elements in y-direction
-! nz: number of elements in z-direction
-! hx: discretization step in x-direction
-! hy: discretization step in y-direction
-! hz: discretization step in z-direction
+! nx: integer, number of elements in x-direction
+! ny: integer, number of elements in y-direction
+! nz: integer, number of elements in z-direction
+! hx: real, discretization step in x-direction
+! hy: real, discretization step in y-direction
+! hz: real, discretization step in z-direction
 ! e2: complex array, dimension (nx-1)*ny*(nz-1)
 ! Output:
 ! tempEY: complex array, dimension (nx-1)*ny*(nz-1)
