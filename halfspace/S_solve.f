@@ -62,7 +62,6 @@
 ! y6: complex array, dimension (nx-1)*(ny-1)*nz
 !==================================================================== 
 
-
       implicit none
       real*8, parameter :: pi=4.0d0*datan(1.0d0)
       integer:: nx,ny,nz,m,i,j,k,ii,iz,Snum,lgx,lgy,lgz
@@ -83,7 +82,7 @@
      + RHS5((nx-1)*ny*(2*nz-1)),RHS6(nx*(ny-1)*(2*nz-1)),
      + sv1(nx*(ny-1)),sv2((nx-1)*ny),sv
 
-! Solve the S1*tnew2=y1
+
       if (Snum.eq.1) then
 !$omp parallel do
        do i=1,size(RHS1)
@@ -209,7 +208,7 @@ c MultVal Complete
 c S2 ################################################################
       elseif (Snum.eq.2) then
  
-	 call zcopy(size(tnew1),tnew1,1,y1,1)
+       call zcopy(size(tnew1),tnew1,1,y1,1)
 !$omp parallel do
        do i=1,size(tnew1)
         tnew1(i)=0.0d0
