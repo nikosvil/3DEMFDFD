@@ -1,3 +1,23 @@
+! ===================================================================
+! Title: NS.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! NS.f performs the multiplication N*q=tempEZ
+! by performing the operations between terms that make up block N 
+! of matrix U and the input array q
+!====================================================================      
+! Input:
+! q: complex array, dimension (nx-1)*ny*(nz-1)
+! nx: integer, number of elements in x-direction
+! ny: integer, number of elements in y-direction
+! nz: integer, number of elements in z-direction
+! hx: real, discretization step in x-direction
+! hy: real, discretization step in y-direction
+! hz: real, discretization step in z-direction
+! Output:
+! tempEZ: complex array, dimension (nx-1)*(ny-1)*nz
+!====================================================================
 	subroutine NS(q,nx,ny,nz,hx,hy,hz,ci,
      +             pt1,pt2,pt3,pt4,pt5,pt6,
      +             st1,st2,st3,st4,st5,st6,
@@ -23,27 +43,6 @@
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny),
      +  q((nx-1)*ny*(nz-1))
      
-! ===================================================================
-! Title: NS.f 
-! Authors: N. Vilanakis, E. Mathioudakis
-! Details: Applied Mathematics and Computers Lab, Technical University of Crete
-!====================================================================
-! NS.f performs the multiplication N*q=tempEZ
-! by performing the operations between terms that make up block N 
-! of matrix U and the input array q
-!====================================================================      
-! Input:
-! q: complex array, dimension (nx-1)*ny*(nz-1)
-! nx: integer, number of elements in x-direction
-! ny: integer, number of elements in y-direction
-! nz: integer, number of elements in z-direction
-! hx: real, discretization step in x-direction
-! hy: real, discretization step in y-direction
-! hz: real, discretization step in z-direction
-! Output:
-! tempEZ: complex array, dimension (nx-1)*(ny-1)*nz
-!==================================================================== 
-
 ! B13*q=pt5
 !====================================================================
 	  call B_mult(q,13,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6)
