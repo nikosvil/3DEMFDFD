@@ -36,30 +36,40 @@
 !====================================================================      
 ! Input:
 ! q: complex array, dimension (nx-1)*(ny-1)*nz
-! nx: number of elements in x-direction
-! ny: number of elements in y-direction
-! nz: number of elements in z-direction
-! hx: discretization step in x-direction
-! hy: discretization step in y-direction
-! hz: discretization step in z-direction
+! nx: integer, number of elements in x-direction
+! ny: integer, number of elements in y-direction
+! nz: integer, number of elements in z-direction
+! hx: real, discretization step in x-direction
+! hy: real, discretization step in y-direction
+! hz: real, discretization step in z-direction
 ! Output:
 ! tempEY: complex array, dimension (nx-1)*ny*(nz-1)
 !==================================================================== 
 
+! B15*q=
+!====================================================================
       call B_mult(q,15,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6)
+! S15*=
+!====================================================================
       call S_solve(15,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,
      +             st1,st2,st3,st4,st5,st6,
      +             RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,
      +             MultVal1,MultVal2,MultVal3,
      +             a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
+     
+! B16*pt5=
+!====================================================================
       call B_mult(pt5,16,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6,)
+! S16*=
+!====================================================================
       call S_solve(16,nx,ny,nz,
      +             pt1,pt2,pt3,pt4,pt5,pt6,
      +             st1,st2,st3,st4,st5,st6,
      +             RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,
      +             MultVal1,MultVal2,MultVal3,
      +             a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2)
+     
 !$OMP PARALLEL DO
         do i=1,(nx-1)*ny*(nz-1)
          tempEY(i)=(24.0d0/(hy*hz))*pt4(i)
