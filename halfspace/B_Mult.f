@@ -1,16 +1,3 @@
-      subroutine B_Mult(t,tag,nx,ny,nz,
-     +                  tnew1,tnew2,tnew3,tnew4,tnew5,tnew6)
-c B_mult subroutine performs the multiplication of Matrix B_tag with
-c vector t producing vector tnew
-      implicit none
-      integer :: nx,ny,nz,i,j,k,tag
-      complex*16 :: t(*),
-     +  tnew1(nx*(ny-1)*(nz-1)),
-     +  tnew2(nx*ny*(nz-1)),
-     +  tnew3(nx*(ny-1)*nz),
-     +  tnew4((nx-1)*ny*(nz-1)),
-     +  tnew5((nx-1)*ny*nz),
-     +  tnew6((nx-1)*(ny-1)*nz),
 ! ===================================================================
 ! Title: B_Mult.f 
 ! Authors: N. Vilanakis, E. Mathioudakis
@@ -37,6 +24,19 @@ c vector t producing vector tnew
 ! tnew5: complex array, dimension (nx-1)*ny*nz
 ! tnew6: complex array, dimension(nx-1)*(ny-1)*nz
 !==================================================================== 
+      subroutine B_Mult(t,tag,nx,ny,nz,
+     +                  tnew1,tnew2,tnew3,tnew4,tnew5,tnew6)
+c B_mult subroutine performs the multiplication of Matrix B_tag with
+c vector t producing vector tnew
+      implicit none
+      integer :: nx,ny,nz,i,j,k,tag
+      complex*16 :: t(*),
+     +  tnew1(nx*(ny-1)*(nz-1)),
+     +  tnew2(nx*ny*(nz-1)),
+     +  tnew3(nx*(ny-1)*nz),
+     +  tnew4((nx-1)*ny*(nz-1)),
+     +  tnew5((nx-1)*ny*nz),
+     +  tnew6((nx-1)*(ny-1)*nz),
 
 !==================================================================== 
 ! B1*t=tnew2 tnew2: nx*ny*(nz-1), t: (nx-1)*ny*(nz-1)
