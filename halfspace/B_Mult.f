@@ -11,9 +11,36 @@ c vector t producing vector tnew
      +  tnew4((nx-1)*ny*(nz-1)),
      +  tnew5((nx-1)*ny*nz),
      +  tnew6((nx-1)*(ny-1)*nz),
+! ===================================================================
+! Title: B_Mult.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! B_Mult.f performs the multiplication between each Bi matrix from the B class
+! and the respective input array t
+! Each time the subroutine is called, integer input tag specifies
+! which operation is being performed using the input t array with the 
+! proper dimensions and returning the respective tnew array
+!====================================================================      
+! Input:
+! t: complex array, non-fixed dimension
+! tag: integer index which indicates the respective B matrix
+! nx: number of elements in x-direction
+! ny: number of elements in y-direction
+! nz: number of elements in z-direction
+! Output:
+! *One of the following arrays depending on the tag index*
+! tnew1: complex array, dimension nx*(ny-1)*(nz-1)
+! tnew2: complex array, dimension nx*ny*(nz-1)
+! tnew3: complex array, dimension nx*(ny-1)*nz
+! tnew4: complex array, dimension (nx-1)*ny*(nz-1)
+! tnew5: complex array, dimension (nx-1)*ny*nz
+! tnew6: complex array, dimension(nx-1)*(ny-1)*nz
+!==================================================================== 
 
-c**********************************************
-c B1*t=tnew2 tnew2:nx*ny*(nz-1), t:(nx-1)*ny*(nz-1)
+!==================================================================== 
+! B1*t=tnew2 tnew2: nx*ny*(nz-1), t: (nx-1)*ny*(nz-1)
+!==================================================================== 
       if (tag.eq.1) then
 !$OMP PARALLEL DO COLLAPSE(2)
       do i=1,nz-1
@@ -34,8 +61,9 @@ c B1*t=tnew2 tnew2:nx*ny*(nz-1), t:(nx-1)*ny*(nz-1)
        enddo
       enddo
 !$OMP END PARALLEL DO
-c**********************************************
-c B2*t=tnew1 tnew1:nx*(ny-1)*(nz-1) t: nx*ny*(nz-1)
+!==================================================================== 
+! B2*t=tnew1 tnew1: nx*(ny-1)*(nz-1) t: nx*ny*(nz-1)
+!==================================================================== 
       elseif (tag.eq.2) then
 
 !$OMP PARALLEL DO COLLAPSE(3)
@@ -79,8 +107,9 @@ c B3*t=tnew2 tnew2:nx*ny*(nz-1) t:nx*(ny-1)*(nz-1)
       enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B4*t=tnew1 tnew1:nx*(ny-1)*(nz-1) t:nx*ny*(nz-1)
+!==================================================================== 
+! B4*t=tnew1 tnew1: nx*(ny-1)*(nz-1) t: nx*ny*(nz-1)
+!==================================================================== 
       elseif (tag.eq.4) then
 !$OMP PARALLEL DO COLLAPSE(3)
        do i=1,nz-1
@@ -93,8 +122,9 @@ c B4*t=tnew1 tnew1:nx*(ny-1)*(nz-1) t:nx*ny*(nz-1)
        enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B5*t=tnew3 tnew3:nx*(ny-1)*nz t:nx*(ny-1)*(nz-1)
+!==================================================================== 
+! B5*t=tnew3 tnew3: nx*(ny-1)*nz t: nx*(ny-1)*(nz-1)
+!==================================================================== 
       elseif (tag.eq.5) then
        do i = 1,nz
         if (i.eq.1) then
@@ -122,8 +152,9 @@ c B5*t=tnew3 tnew3:nx*(ny-1)*nz t:nx*(ny-1)*(nz-1)
         endif
       enddo
 
-c**********************************************
-c B6*t=tnew1 tnew1:nx*(ny-1)*(nz-1) t:nx*(ny-1)*nz
+!==================================================================== 
+! B6*t=tnew1 tnew1: nx*(ny-1)*(nz-1) t: nx*(ny-1)*nz
+!==================================================================== 
       elseif (tag.eq.6) then
 !$OMP PARALLEL DO COLLAPSE(3)
        do i=1,nz-1
@@ -136,8 +167,9 @@ c B6*t=tnew1 tnew1:nx*(ny-1)*(nz-1) t:nx*(ny-1)*nz
       enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B7*t=tnew3 tnew3:nx*(ny-1)*nz t:(nx-1)*(ny-1)*nz
+!==================================================================== 
+! B7*t=tnew3 tnew3: nx*(ny-1)*nz t: (nx-1)*(ny-1)*nz
+!==================================================================== 
       elseif (tag.eq.7) then
 !$OMP PARALLEL DO 
        do i=1,nz*(ny-1)
@@ -154,8 +186,9 @@ c B7*t=tnew3 tnew3:nx*(ny-1)*nz t:(nx-1)*(ny-1)*nz
        enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B8*t=tnew1 tnew1:nx*(ny-1)*(nz-1) t:nx*(ny-1)*nz
+!==================================================================== 
+! B8*t=tnew1 tnew1: nx*(ny-1)*(nz-1) t: nx*(ny-1)*nz
+!==================================================================== 
       elseif (tag.eq.8) then
 !$OMP PARALLEL DO COLLAPSE(3)
        do i=1,nz-1
@@ -168,8 +201,9 @@ c B8*t=tnew1 tnew1:nx*(ny-1)*(nz-1) t:nx*(ny-1)*nz
         enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B9*t=tnew2 tnew2:nx*ny*(nz-1) t:nx*(ny-1)*(nz-1)
+!==================================================================== 
+! B9*t=tnew2 tnew2: nx*ny*(nz-1) t: nx*(ny-1)*(nz-1)
+!==================================================================== 
       elseif (tag.eq.9) then
 !$OMP PARALLEL DO COLLAPSE(2)
        do i=1,nz-1
@@ -197,8 +231,9 @@ c B9*t=tnew2 tnew2:nx*ny*(nz-1) t:nx*(ny-1)*(nz-1)
       enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B10*t=tnew tnew4:(nx-1)*ny*(nz-1) t:nx*ny*(nz-1)
+!==================================================================== 
+! B10*t=tnew tnew4: (nx-1)*ny*(nz-1) t: nx*ny*(nz-1)
+!==================================================================== 
       elseif (tag.eq.10) then
 !$OMP PARALLEL DO COLLAPSE(3)
        do i=1,nz-1
@@ -211,8 +246,9 @@ c B10*t=tnew tnew4:(nx-1)*ny*(nz-1) t:nx*ny*(nz-1)
        enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B11*t=tnew tnew2:nx*ny*(nz-1) t:(nx-1)*ny*(nz-1)
+!==================================================================== 
+! B11*t=tnew tnew2: nx*ny*(nz-1) t: (nx-1)*ny*(nz-1)
+!==================================================================== 
 	elseif (tag.eq.11) then
        do i=1,(nz-1)*ny
         tnew2(1+(i-1)*(nx))=-10.0d0*t(1+(i-1)*(nx-1))+36.0d0*
@@ -225,8 +261,9 @@ c B11*t=tnew tnew2:nx*ny*(nz-1) t:(nx-1)*ny*(nz-1)
      +  t(nx-4+(i-1)*(nx-1))
        enddo
 
-c**********************************************
-c B12*t=tnew tnew4:(nx-1)*ny*(nz-1) t:nx*ny*(nz-1)
+!==================================================================== 
+! B12*t=tnew tnew4: (nx-1)*ny*(nz-1) t: nx*ny*(nz-1)
+!==================================================================== 
       elseif (tag.eq.12) then
 !$OMP PARALLEL DO COLLAPSE(3)
       do i=1,nz-1
@@ -239,8 +276,9 @@ c B12*t=tnew tnew4:(nx-1)*ny*(nz-1) t:nx*ny*(nz-1)
       enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B13*t=tnew tnew5:(nx-1)*ny*nz t:(nx-1)*ny*(nz-1)
+!==================================================================== 
+! B13*t=tnew tnew5:(nx-1)*ny*nz t:(nx-1)*ny*(nz-1)
+!==================================================================== 
       elseif (tag.eq.13) then
 !$OMP PARALLEL
 !$OMP DO
@@ -266,8 +304,9 @@ c B13*t=tnew tnew5:(nx-1)*ny*nz t:(nx-1)*ny*(nz-1)
 !$OMP END DO
 !$OMP END PARALLEL
 
-c**********************************************
-c B14*t=tnew tnew4:(nx-1)*ny*(nz-1) t:(nx-1)*ny*nz
+!==================================================================== 
+! B14*t=tnew tnew4: (nx-1)*ny*(nz-1) t: (nx-1)*ny*nz
+!==================================================================== 
       elseif (tag.eq.14) then
 !$OMP PARALLEL DO COLLAPSE(2)
       do i=1,nz-1
@@ -278,8 +317,9 @@ c B14*t=tnew tnew4:(nx-1)*ny*(nz-1) t:(nx-1)*ny*nz
       enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B15*t=tnew tnew5:(nx-1)*ny*nz t:(nx-1)*(ny-1)*nz
+!==================================================================== 
+! B15*t=tnew tnew5: (nx-1)*ny*nz t: (nx-1)*(ny-1)*nz
+!==================================================================== 
       elseif (tag.eq.15) then
 !$OMP PARALLEL DO COLLAPSE(2)
       do i=1,nz
@@ -310,8 +350,9 @@ c B15*t=tnew tnew5:(nx-1)*ny*nz t:(nx-1)*(ny-1)*nz
       enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B16*t=tnew tnew:(nx-1)*ny*(nz-1) t:
+!==================================================================== 
+! B16*t=tnew tnew:(nx-1)*ny*(nz-1) t: (nx-1)*ny*(nz-1)
+!==================================================================== 
 	elseif (tag.eq.16) then
 !$OMP PARALLEL DO COLLAPSE(2)
       do i=1,nz-1
@@ -321,8 +362,9 @@ c B16*t=tnew tnew:(nx-1)*ny*(nz-1) t:
       enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B17*t=tnew tnew3:nx*(ny-1)*nz t:(nx-1)*(ny-1)*nz
+!==================================================================== 
+! B17*t=tnew tnew3: nx*(ny-1)*nz t: (nx-1)*(ny-1)*nz
+!==================================================================== 
 	elseif (tag.eq.17) then
 !$OMP PARALLEL DO COLLAPSE(2)
       do i=1,nz
@@ -344,8 +386,9 @@ c B17*t=tnew tnew3:nx*(ny-1)*nz t:(nx-1)*(ny-1)*nz
       enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B18*t=tnew tnew6:(nx-1)*(ny-1)*nz t:nx*(ny-1)*nz
+!==================================================================== 
+! B18*t=tnew tnew6: (nx-1)*(ny-1)*nz t: nx*(ny-1)*nz
+!==================================================================== 
 	elseif (tag.eq.18) then
 !$OMP PARALLEL DO COLLAPSE(3)
       do i=1,nz
@@ -358,8 +401,9 @@ c B18*t=tnew tnew6:(nx-1)*(ny-1)*nz t:nx*(ny-1)*nz
       enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B19*t=tnew tnew5:(nx-1)*ny*nz t:(nx-1)*(ny-1)*nz
+!==================================================================== 
+! B19*t=tnew tnew5: (nx-1)*ny*nz t: (nx-1)*(ny-1)*nz
+!==================================================================== 
 	elseif (tag.eq.19) then
 !$OMP PARALLEL DO COLLAPSE(2)
       do i=1,nz
@@ -390,8 +434,9 @@ c B19*t=tnew tnew5:(nx-1)*ny*nz t:(nx-1)*(ny-1)*nz
       enddo
 !$OMP END PARALLEL DO
 
-c**********************************************
-c B20*t=tnew tnew6:(nx-1)*(ny-1)*nz t:(nx-1)*ny*nz
+!==================================================================== 
+! B20*t=tnew tnew6: (nx-1)*(ny-1)*nz t: (nx-1)*ny*nz
+!==================================================================== 
 	elseif (tag.eq.20) then
 !$OMP PARALLEL DO COLLAPSE(3)
       do i=1,nz
