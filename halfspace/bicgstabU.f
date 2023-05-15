@@ -1,3 +1,41 @@
+! ===================================================================
+! Title: bicgstabU.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! bicgstabU.f implements the BiCGSTAB iterative method for the
+! solution of the linear system UE=b
+!====================================================================      
+! Input:
+! n: integer, total number of unknown elements in the grid
+! nx: integer,number of elements in x-direction
+! ny: integer,number of elements in y-direction
+! nz: integer,number of elements in z-direction
+! hx: real, discretization step in x-direction
+! hy: real, discretization step in y-direction
+! hz: real, discretization step in z-direction
+! e1: complex array, dimension: nx*(ny-1)*(nz-1)
+! e2: complex array, dimension: (nx-1)*ny*(nz-1) 
+! e3: complex array, dimension: (nx-1)*(ny-1)*nz
+! F1: complex array, dimension: nx*(ny-1)*(nz-1)
+! F2: complex array, dimension: (nx-1)*ny*(nz-1)  
+! maxstepU: integer, maximum number of iterations to be performed
+! tolU: real, tolerance of the method
+! Local auxiliary variables:
+! v_i,r_i1,rh,p_i,t,s,x_i1,b0: complex arrays, dimension n
+! Auxiliary variables used by other subroutines:
+! pt1,pt2,pt3,pt4,pt5,pt6,st1,st2,st3,st4,st5,st6
+! RHS1,RHS2,RHS3,RHS4,RHS5,RHS6
+! MultVal1,MultVal2,MultVal3
+! a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2
+! temp1,temp11,temp2,temp22,temp3,temp33
+! tempEX,tempEY,tempEZ
+! tempEX_1,tempEY_1,tempEZ_1
+! tempEX_2,tempEY_2,tempEZ_2
+! tempEX_3,tempEY_3,tempEZ_3
+! Output:
+! x: complex array, dimension: n
+!==================================================================== 
       subroutine bicgstabU(n,nx,ny,nz,hx,hy,hz,ci,
      +           e1,e2,e3,F1,F2,
      +           temp1,temp11,temp2,temp22,temp3,temp33,
@@ -49,44 +87,6 @@
      + sv1(nx*(ny-1)),sv2((nx-1)*ny),
      + v_i(n),r_i1(n),rh(n),p_i(n),b(n),t(n),s(n),x_i1(n),x(n),
      + b0(n)
-! ===================================================================
-! Title: bicgstabU.f 
-! Authors: N. Vilanakis, E. Mathioudakis
-! Details: Applied Mathematics and Computers Lab, Technical University of Crete
-!====================================================================
-! bicgstabU.f implements the BiCGSTAB iterative method for the
-! solution of the linear system UE=b
-!====================================================================      
-! Input:
-! n: integer, total number of unknown elements in the grid
-! nx: integer,number of elements in x-direction
-! ny: integer,number of elements in y-direction
-! nz: integer,number of elements in z-direction
-! hx: real, discretization step in x-direction
-! hy: real, discretization step in y-direction
-! hz: real, discretization step in z-direction
-! e1: complex array, dimension: nx*(ny-1)*(nz-1)
-! e2: complex array, dimension: (nx-1)*ny*(nz-1) 
-! e3: complex array, dimension: (nx-1)*(ny-1)*nz
-! F1: complex array, dimension: nx*(ny-1)*(nz-1)
-! F2: complex array, dimension: (nx-1)*ny*(nz-1)  
-! maxstepU: integer, maximum number of iterations to be performed
-! tolU: real, tolerance of the method
-! Local auxiliary variables:
-! v_i,r_i1,rh,p_i,t,s,x_i1,b0: complex arrays, dimension n
-! Auxiliary variables used by other subroutines:
-! pt1,pt2,pt3,pt4,pt5,pt6,st1,st2,st3,st4,st5,st6
-! RHS1,RHS2,RHS3,RHS4,RHS5,RHS6
-! MultVal1,MultVal2,MultVal3
-! a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2
-! temp1,temp11,temp2,temp22,temp3,temp33
-! tempEX,tempEY,tempEZ
-! tempEX_1,tempEY_1,tempEZ_1
-! tempEX_2,tempEY_2,tempEZ_2
-! tempEX_3,tempEY_3,tempEZ_3
-! Output:
-! x: complex array, dimension: n
-!==================================================================== 
 
        istep=1
        errU=1.0d0
