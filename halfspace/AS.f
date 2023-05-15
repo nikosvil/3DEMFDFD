@@ -1,4 +1,25 @@
-        subroutine AS(q,nx,ny,nz,hx,hy,hz,ci,e1,
+! ===================================================================
+! Title: AS.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! AS.f performs the multiplication A*q=tempEX
+! by performing the operations between terms that make up block A 
+! of matrix U and the input array q
+!====================================================================      
+! Input:
+! q: complex array, dimension nx*(ny-1)*(nz-1)
+! nx: integer, number of elements in x-direction
+! ny: integer, number of elements in y-direction
+! nz: integer, number of elements in z-direction
+! hx: real, discretization step in x-direction
+! hy: real, discretization step in y-direction
+! hz: real, discretization step in z-direction
+! e1: complex array, dimension nx*(ny-1)*(nz-1)
+! Output:
+! tempEX: complex array, dimension nx*(ny-1)*(nz-1)
+!==================================================================== 
+	subroutine AS(q,nx,ny,nz,hx,hy,hz,ci,e1,
      +              pt1,pt2,pt3,pt4,pt5,pt6,
      +              st1,st2,st3,st4,st5,st6,
      +              RHS1,RHS2,RHS3,RHS4,RHS5,RHS6,
@@ -27,28 +48,6 @@
      +  temp1(nx*(ny-1)*(nz-1)),temp11(nx*(ny-1)*(nz-1)),
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny),zdotc
      
-! ===================================================================
-! Title: AS.f 
-! Authors: N. Vilanakis, E. Mathioudakis
-! Details: Applied Mathematics and Computers Lab, Technical University of Crete
-!====================================================================
-! AS.f performs the multiplication A*q=tempEX
-! by performing the operations between terms that make up block A 
-! of matrix U and the input array q
-!====================================================================      
-! Input:
-! q: complex array, dimension nx*(ny-1)*(nz-1)
-! nx: integer, number of elements in x-direction
-! ny: integer, number of elements in y-direction
-! nz: integer, number of elements in z-direction
-! hx: real, discretization step in x-direction
-! hy: real, discretization step in y-direction
-! hz: real, discretization step in z-direction
-! e1: complex array, dimension nx*(ny-1)*(nz-1)
-! Output:
-! tempEX: complex array, dimension nx*(ny-1)*(nz-1)
-!==================================================================== 
-
 ! B5*q=pt3
 !====================================================================  
         call B_mult(q,5,nx,ny,nz,pt1,pt2,pt3,pt4,pt5,pt6)
