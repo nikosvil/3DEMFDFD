@@ -10,7 +10,7 @@
 ! Authors: N. Vilanakis, E. Mathioudakis
 ! Details: Applied Mathematics and Computers Lab, Technical University of Crete
 !====================================================================
-! S_solve.f computes the solution tnew of the linear system Snum*tnew=yi
+! S_solve.f computes the solution tnew of the linear system Snum*tnew=tnew
 ! using classic Cyclic Reduction or the Fourier-based Cyclic Reduction
 ! depending on the structure of the Snum matrix
 ! Each time the subroutine is being called, integer input Snum specifies
@@ -37,6 +37,12 @@
 ! RHS4: complex array, dimension (nx-1)*(2*ny-1)*nz
 ! RHS5: complex array, dimension (nx-1)*ny*(2*nz-1)
 ! RHS6: complex array, dimension nx*(ny-1)*(2*nz-1)
+! y1: complex array, dimension nx*(ny-1)*(nz-1)
+! y2: complex array, dimension nx*ny*(nz-1))
+! y3: complex array, dimension nx*(ny-1)*nz
+! y4: complex array, dimension (nx-1)*ny*(nz-1)
+! y5: complex array, dimension (nx-1)*ny*nz
+! y6: complex array, dimension (nx-1)*(ny-1)*nz
 ! MultVal1: real array, dimension 5*int(dlog(dfloat(nx))/dlog(2.0d0))
 ! MultVal2: real array, dimension 5*int(dlog(dfloat(ny))/dlog(2.0d0))
 ! MultVal3: real array, dimension 5*int(dlog(dfloat(nz))/dlog(2.0d0))
@@ -54,12 +60,12 @@
 ! sv: real scalar
 ! Output:
 ! *One of the following arrays depending on the Snum index*
-! y1: complex array, dimension nx*(ny-1)*(nz-1)
-! y2: complex array, dimension nx*ny*(nz-1))
-! y3: complex array, dimension nx*(ny-1)*nz
-! y4: complex array, dimension (nx-1)*ny*(nz-1)
-! y5: complex array, dimension (nx-1)*ny*nz
-! y6: complex array, dimension (nx-1)*(ny-1)*nz
+! tnew1: complex array, dimension nx*(ny-1)*(nz-1)
+! tnew2: complex array, dimension nx*ny*(nz-1)
+! tnew3: complex array, dimension nx*(ny-1)*nz
+! tnew4: complex array, dimension (nx-1)*ny*(nz-1)
+! tnew5: complex array, dimension (nx-1)*ny*nz
+! tnew6: complex array, dimension(nx-1)*(ny-1)*nz
 !==================================================================== 
 
       implicit none
@@ -82,7 +88,9 @@
      + RHS5((nx-1)*ny*(2*nz-1)),RHS6(nx*(ny-1)*(2*nz-1)),
      + sv1(nx*(ny-1)),sv2((nx-1)*ny),sv
 
-
+!==================================================================== 
+! S1*tnew2=tnew2 tnew2: nx*ny*(nz-1)
+!==================================================================== 
       if (Snum.eq.1) then
 !$omp parallel do
        do i=1,size(RHS1)
@@ -205,7 +213,9 @@ c MultVal Complete
        enddo
 !$omp end parallel do
 
-c S2 ################################################################
+!==================================================================== 
+! S2*tnew1=tnew1 tnew1: nx*(ny-1)*(nz-1)
+!==================================================================== 
       elseif (Snum.eq.2) then
  
        call zcopy(size(tnew1),tnew1,1,y1,1)
@@ -241,9 +251,9 @@ c S2 ################################################################
 !$omp end parallel do
        enddo
 
-
-
-c S3 ###############################################################
+!==================================================================== 
+! S3*tnew2=tnew2 tnew2: 
+!==================================================================== 
 	elseif (Snum.eq.3) then
 !$omp parallel do
        do i=1,size(RHS2)
@@ -396,7 +406,10 @@ c  Multval complete
         enddo
        enddo
 !$omp end parallel do
-c S4 ###############################################################
+
+!==================================================================== 
+! S4*tnew1=tnew1 tnew1: 
+!==================================================================== 
 	elseif (Snum.eq.4) then
 	
 	call zcopy(size(tnew1),tnew1,1,y1,1)
@@ -425,7 +438,9 @@ c S4 ###############################################################
        enddo
       enddo
 !$omp end parallel do
-
+!==================================================================== 
+! S5*tnew3=tnew3 tnew3: 
+!==================================================================== 
 c S5 ###############################################################
 	elseif (Snum.eq.5) then
 !$omp parallel do
@@ -559,7 +574,9 @@ c MultVal complete
        enddo
       enddo
 
-c S6 ###############################################################
+!==================================================================== 
+! S6*tnew1=tnew1 tnew1: 
+!==================================================================== 
 	elseif (Snum.eq.6) then
        
 	 call zcopy(size(tnew1),tnew1,1,y1,1)
@@ -595,8 +612,10 @@ c S6 ###############################################################
         enddo
 !$omp end parallel do
        enddo
-
-c S7 ###############################################################
+       
+!==================================================================== 
+! S7*tnew3=tnew3 tnew3: 
+!==================================================================== 
 	elseif (Snum.eq.7) then
 !$omp parallel do
     	 do i=1,size(RHS3)
@@ -718,7 +737,9 @@ c MultVal complete
        enddo
 !$omp end parallel do 
 
-c S8 ###############################################################
+!==================================================================== 
+! S8*tnew1=tnew1 tnew1: 
+!==================================================================== 
 	elseif (Snum.eq.8) then
 
 	 call zcopy(size(tnew1),tnew1,1,y1,1)
@@ -752,7 +773,9 @@ c S8 ###############################################################
 !$omp end parallel do 
        enddo
 
-c S9 ###############################################################
+!==================================================================== 
+! S9*tnew2=tnew2 tnew2: 
+!==================================================================== 
 	elseif (Snum.eq.9) then
 !$omp parallel do 
        do i=1,size(RHS2)
@@ -894,7 +917,9 @@ c MultVal complete
     	 enddo
 !$omp end parallel do
 
-cS10 Solve with Fourier
+!==================================================================== 
+! S10*tnew4=tnew4 tnew4: 
+!==================================================================== 
 	elseif (Snum.eq.10) then
         
 	 call zcopy(size(tnew4),tnew4,1,y4,1)
@@ -922,7 +947,9 @@ cS10 Solve with Fourier
        enddo
 !$omp end parallel do 
 
-c S11 Solve with CR ##################################################
+!==================================================================== 
+! S11*tnew2=tnew2 tnew2: 
+!==================================================================== 
 	elseif (Snum.eq.11) then
 !$omp parallel do 
 	 do i=1,size(RHS1)
@@ -1047,7 +1074,9 @@ c MultVal complete
        enddo
 !$omp end parallel do
 
-c S12 Solve with Fourier #############################################
+!==================================================================== 
+! S12*tnew4=tnew4 tnew4: 
+!==================================================================== 
 	elseif (Snum.eq.12) then
 
 	 call zcopy(size(tnew4),tnew4,1,y4,1)
@@ -1075,7 +1104,9 @@ c S12 Solve with Fourier #############################################
        enddo
 !$omp end parallel do
 
-c S13 ################################################################
+!==================================================================== 
+! S13*tnew5=tnew5 tnew5: 
+!==================================================================== 
 	elseif (Snum.eq.13) then
 !$omp parallel do 
 	 do i=1,size(RHS5)
@@ -1211,7 +1242,9 @@ c Multval complete
        enddo
       enddo
 
-c S14 Solve with Fourier Block ######################################
+!==================================================================== 
+! S14*tnew4=tnew4 tnew4: 
+!==================================================================== 
 	elseif (Snum.eq.14) then
         
 	 call zcopy(size(tnew4),tnew4,1,y4,1)
@@ -1249,7 +1282,9 @@ c	 print*,dznrm2(size(y4),y4,1)
 !$omp end parallel do 
     	 enddo
 
-c S15 ################################################################
+!==================================================================== 
+! S15*tnew5=tnew5 tnew5: 
+!==================================================================== 
 	elseif (Snum.eq.15) then
 !$omp parallel do 
 	 do i=1,size(RHS4)
@@ -1407,7 +1442,9 @@ c tnew evaluation
        enddo
 !$omp end parallel do
  
-c S16 ################################################################
+!==================================================================== 
+! S16*tnew4=tnew4 tnew4: 
+!==================================================================== 
 	elseif (Snum.eq.16) then
 
 	 call zcopy(size(tnew4),tnew4,1,y4,1)
@@ -1442,7 +1479,9 @@ c S16 ################################################################
 !$omp end parallel do 
        enddo
 	 
-c S17 Solve with CR ###################################################
+!==================================================================== 
+! S17*tnew3=tnew3 tnew3: 
+!==================================================================== 
 	elseif (Snum.eq.17) then
 
 !$omp parallel do 
@@ -1569,7 +1608,9 @@ c MultVal complete
 	  enddo
 !$omp end parallel do
 
-c S18 ###############################################################
+!==================================================================== 
+! S18*tnew6=tnew6 tnew6: 
+!==================================================================== 
 	elseif (Snum.eq.18) then
 
 	call zcopy(size(tnew6),tnew6,1,y6,1)
@@ -1596,7 +1637,9 @@ c S18 ###############################################################
         enddo
        enddo
 !$omp end parallel do 
-c S19 ###############################################################
+!==================================================================== 
+! S19*tnew5=tnew5 tnew5: 
+!==================================================================== 
 	elseif (Snum.eq.19) then
 
 !$omp parallel do 
@@ -1758,7 +1801,10 @@ c        k=lgy
          enddo
         enddo
 !$omp end parallel do
-c S20 ##############################################################
+
+!==================================================================== 
+! S20*tnew6=tnew6 tnew6: 
+!==================================================================== 
 	elseif (Snum.eq.20) then
 
          call zcopy(size(tnew6),tnew6,1,y6,1)
