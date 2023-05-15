@@ -4,8 +4,11 @@
 ! Details: Applied Mathematics and Computers Lab, Technical University of Crete
 !====================================================================
 ! U_Mult.f successively calls proper subroutines to perform the
-! multiplication between the blocks of matrix U and the 
-! respective vectors (as described in manuscript) during the
+! multiplication between the blocks of matrix U 
+!        A  B  C
+!  U = [ D  Z  K ]
+!        M  N  P
+! and the respective vectors (as described in manuscript) during the
 ! implementation of the BiCGSTAB method
 !====================================================================      
 ! Input:
@@ -65,7 +68,10 @@
      +  tempEZ_2((nx-1)*(ny-1)*nz),tempEZ_3((nx-1)*(ny-1)*nz),
      +  temp(n)
 
-! Equation AEx+BEy+CEz
+!=============================================================
+! Multiplication of the terms in block A
+! with the Ex-sized (1st) chunk of vector b 
+!=============================================================
         call AS(b(1:nx*(ny-1)*(nz-1)),
      +       nx,ny,nz,hx,hy,hz,ci,e1,
      +       pt1,pt2,pt3,pt4,pt5,pt6,
@@ -75,7 +81,10 @@
      +       a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2,
      +       temp1,temp11,
      +       tempEX_1)
-
+!=============================================================
+! Multiplication of the terms in block B
+! with the Ey-sized (2nd) chunk of vector b 
+!=============================================================
         call BS(b(nx*(ny-1)*(nz-1)+1:nx*(ny-1)*(nz-1)+(nx-1)*ny*(nz-1)),
      +       nx,ny,nz,hx,hy,hz,ci,
      +       pt1,pt2,pt3,pt4,pt5,pt6,
@@ -84,7 +93,10 @@
      +       MultVal1,MultVal2,MultVal3,
      +       a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2,
      +       tempEX_2)
-
+!=============================================================
+! Multiplication of the terms in block C
+! with the Ez-sized (3rd) chunk of vector b 
+!=============================================================
         call CS(b(nx*(ny-1)*(nz-1)+(nx-1)*ny*(nz-1)+1:n),
      +       nx,ny,nz,hx,hy,hz,ci,
      +       pt1,pt2,pt3,pt4,pt5,pt6,
@@ -93,8 +105,10 @@
      +       MultVal1,MultVal2,MultVal3,
      +       a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2,
      +       tempEX_3)
-
-! Line 2
+!=============================================================
+! Multiplication of the terms in block D
+! with the Ex-sized (1st) chunk of vector b 
+!=============================================================
         call DS(b(1:nx*(ny-1)*(nz-1)),
      +       nx,ny,nz,hx,hy,hz,ci,
      +       pt1,pt2,pt3,pt4,pt5,pt6,
@@ -103,7 +117,10 @@
      +       MultVal1,MultVal2,MultVal3,
      +       a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2,
      +       tempEY_1)
-
+!=============================================================
+! Multiplication of the terms in block Z
+! with the Ey-sized (2nd) chunk of vector b 
+!=============================================================
         call ZS(b(nx*(ny-1)*(nz-1)+1:nx*(ny-1)*(nz-1)+(nx-1)*ny*(nz-1)),
      +       nx,ny,nz,hx,hy,hz,ci,e2,
      +       pt1,pt2,pt3,pt4,pt5,pt6,
@@ -113,7 +130,10 @@
      +       a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2,
      +       temp2,temp22,
      +       tempEY_2)
-
+!=============================================================
+! Multiplication of the terms in block K
+! with the Ez-sized (3rd) chunk of vector b 
+!=============================================================
         call KS(b(nx*(ny-1)*(nz-1)+(nx-1)*ny*(nz-1)+1:n),
      +       nx,ny,nz,hx,hy,hz,ci,
      +       pt1,pt2,pt3,pt4,pt5,pt6,
@@ -122,8 +142,10 @@
      +       MultVal1,MultVal2,MultVal3,
      +       a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2,
      +       tempEY_3)
-
-c Line 3
+!=============================================================
+! Multiplication of the terms in block M
+! with the Ex-sized (1st) chunk of vector b 
+!=============================================================
         call MS(b(1:nx*(ny-1)*(nz-1)),
      +       nx,ny,nz,hx,hy,hz,ci,
      +       pt1,pt2,pt3,pt4,pt5,pt6,
@@ -132,7 +154,10 @@ c Line 3
      +       MultVal1,MultVal2,MultVal3,
      +       a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2,
      +       tempEZ_1)
-
+!=============================================================
+! Multiplication of the terms in block N
+! with the Ey-sized (2nd) chunk of vector b 
+!=============================================================
         call NS(b(nx*(ny-1)*(nz-1)+1:nx*(ny-1)*(nz-1)+(nx-1)*ny*(nz-1)),
      +       nx,ny,nz,hx,hy,hz,ci,
      +       pt1,pt2,pt3,pt4,pt5,pt6,
@@ -141,7 +166,10 @@ c Line 3
      +       MultVal1,MultVal2,MultVal3,
      +       a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2,
      +       tempEZ_2)
-
+!=============================================================
+! Multiplication of the terms in block P
+! with the Ez-sized (3rd) chunk of vector b 
+!=============================================================
         call PS(b(nx*(ny-1)*(nz-1)+(nx-1)*ny*(nz-1)+1:n),
      +       nx,ny,nz,hx,hy,hz,ci,e3,
      +       pt1,pt2,pt3,pt4,pt5,pt6,
