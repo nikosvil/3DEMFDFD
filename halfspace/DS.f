@@ -1,3 +1,23 @@
+! ===================================================================
+! Title: MS.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! DS.f performs the multiplication D*q=tempEY
+! by performing the operations between terms that make up block D 
+! of matrix U and the input array q
+!====================================================================      
+! Input:
+! q: complex array, dimension nx*(ny-1)*(nz-1)
+! nx: integer, number of elements in x-direction
+! ny: integer, number of elements in y-direction
+! nz: integer, number of elements in z-direction
+! hx: real, discretization step in x-direction
+! hy: real, discretization step in y-direction
+! hz: real, discretization step in z-direction
+! Output:
+! tempEY: complex array, dimension (nx-1)*ny*(nz-1)
+!==================================================================== 
         subroutine DS(q,nx,ny,nz,hx,hy,hz,ci,
      +              pt1,pt2,pt3,pt4,pt5,pt6,
      +              st1,st2,st3,st4,st5,st6,
@@ -23,27 +43,6 @@
      +  RHS3((2*nx-1)*(ny-1)*nz),RHS4((nx-1)*(2*ny-1)*nz),
      +  RHS5((nx-1)*ny*(2*nz-1)),RHS6(nx*(ny-1)*(2*nz-1)),
      +  sv1(nx*(ny-1)),sv2((nx-1)*ny)
-
-! ===================================================================
-! Title: MS.f 
-! Authors: N. Vilanakis, E. Mathioudakis
-! Details: Applied Mathematics and Computers Lab, Technical University of Crete
-!====================================================================
-! DS.f performs the multiplication D*q=tempEY
-! by performing the operations between terms that make up block D 
-! of matrix U and the input array q
-!====================================================================      
-! Input:
-! q: complex array, dimension nx*(ny-1)*(nz-1)
-! nx: integer, number of elements in x-direction
-! ny: integer, number of elements in y-direction
-! nz: integer, number of elements in z-direction
-! hx: real, discretization step in x-direction
-! hy: real, discretization step in y-direction
-! hz: real, discretization step in z-direction
-! Output:
-! tempEY: complex array, dimension (nx-1)*ny*(nz-1)
-!==================================================================== 
 
 ! B9*q=pt2
 !====================================================================
