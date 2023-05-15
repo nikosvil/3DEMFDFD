@@ -1,15 +1,3 @@
-      subroutine makeS(nx,ny,nz,hz,gl,
-     +           SIGMAEX,SIGMAEY,SIGMAEZ,sigmaAIR,sigma,sigma0,
-     +           SIGMADiffEX,SIGMADiffEY)
-
-      implicit none
-      integer:: nx,ny,nz,ik,ix,iy,iz
-      real*8 :: hz,sigmaAIR,sigma0,sigma,gl,zcounter,
-     +          SIGMAEX(nx*(ny-1)*(nz-1)),SIGMAEY((nx-1)*ny*(nz-1)),
-     +          SIGMAEZ((nx-1)*(ny-1)*nz),SIGMADiffEX(nx*(ny-1)*(nz-1)),
-     +          SIGMADiffEY((nx-1)*ny*(nz-1)),dnrm2
-
-
 ! ===================================================================
 ! Title: makeS.f 
 ! Authors: N. Vilanakis, E. Mathioudakis
@@ -35,7 +23,22 @@
 ! SIGMADiffEX: real array, Difference between conductivity σ and background conductivity σ0 in Ex nodes, dimension: nx*(ny-1)*(nz-1)
 ! SIGMADiffEY: real array, Difference between conductivity σ and background conductivity σ0 in Ey nodes, dimension: (nx-1)*ny*(nz-1) 
 !==================================================================== 
-c SIGMA-EX
+      subroutine makeS(nx,ny,nz,hz,gl,
+     +           SIGMAEX,SIGMAEY,SIGMAEZ,sigmaAIR,sigma,sigma0,
+     +           SIGMADiffEX,SIGMADiffEY)
+
+      implicit none
+      integer:: nx,ny,nz,ik,ix,iy,iz
+      real*8 :: hz,sigmaAIR,sigma0,sigma,gl,zcounter,
+     +          SIGMAEX(nx*(ny-1)*(nz-1)),SIGMAEY((nx-1)*ny*(nz-1)),
+     +          SIGMAEZ((nx-1)*(ny-1)*nz),SIGMADiffEX(nx*(ny-1)*(nz-1)),
+     +          SIGMADiffEY((nx-1)*ny*(nz-1)),dnrm2
+
+
+!==================================================================== 
+! SIGMA-EX Compute conductivity at Ex nodes above and below ground
+!==================================================================== 
+
 !$OMP PARALLEL DO PRIVATE(ik,zcounter) SHARED(SIGMAEX,SIGMADiffEX)
       do iz=1,nz-1
        zcounter=iz*hz
@@ -56,7 +59,10 @@ c     Above Ground
       enddo
 !$OMP END PARALLEL DO
 
-c SIGMA-EY
+!==================================================================== 
+! SIGMA-EY Compute conductivity at Ey nodes above and below ground
+!==================================================================== 
+
 !$OMP PARALLEL DO PRIVATE(ik,zcounter) SHARED(SIGMAEY,SIGMADiffEY) 
       do iz=1,nz-1
        zcounter=iz*hz
@@ -75,9 +81,12 @@ c     Above Ground
         enddo
        enddo
       enddo
-!$OMP END PARALLEL DO 
+!$OMP END PARALLEL DO
 
-c SIGMA-EZ
+!==================================================================== 
+! SIGMA-EZ Compute conductivity at Ez nodes above and below ground
+!==================================================================== 
+
 !$OMP PARALLEL DO PRIVATE(ik,zcounter) SHARED(SIGMAEZ)
       do iz=1,nz
        zcounter=iz*hz
