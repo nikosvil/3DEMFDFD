@@ -1,3 +1,27 @@
+! ===================================================================
+! Title: U_Mult.f 
+! Authors: N. Vilanakis, E. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+!====================================================================
+! U_Mult.f successively calls proper subroutines to perform the
+! multiplication between the blocks of matrix U and the 
+! respective vectors (as described in manuscript) during the
+! implementation of the BiCGSTAB method
+!====================================================================      
+! Input:
+! b: complex array, dimension n
+! nx: integer, number of elements in x-direction
+! ny: integer, number of elements in y-direction
+! nz: integer, number of elements in z-direction
+! hx: real, discretization step in x-direction
+! hy: real, discretization step in y-direction
+! hz: real, discretization step in z-direction
+! e1: complex array, dimension nx*(ny-1)*(nz-1), passed to subroutine AS.f
+! e2: complex array, dimension (nx-1)*ny*(nz-1), passed to subroutine ZS.f
+! e3: complex array, dimension (nx-1)*(ny-1)*nz, passed to subroutine PS.f
+! Output:
+! temp: complex array, dimension n
+!====================================================================
       subroutine U_Mult(b,n,nx,ny,nz,hx,hy,hz,ci,
      +      e1,e2,e3,tempEX,tempEY,tempEZ,
      +      pt1,pt2,pt3,pt4,pt5,pt6,
@@ -40,33 +64,8 @@
      +  tempEZ((nx-1)*(ny-1)*nz),  tempEZ_1((nx-1)*(ny-1)*nz),
      +  tempEZ_2((nx-1)*(ny-1)*nz),tempEZ_3((nx-1)*(ny-1)*nz),
      +  temp(n)
-! ===================================================================
-! Title: U_Mult.f 
-! Authors: N. Vilanakis, E. Mathioudakis
-! Details: Applied Mathematics and Computers Lab, Technical University of Crete
-!====================================================================
-! U_Mult.f successively calls proper subroutines to perform the
-! multiplication between the blocks of matrix U and the 
-! respective vectors (as described in manuscript) during the
-! implementation of the BiCGSTAB method
-!====================================================================      
-! Input:
-! b: complex array, dimension n
-! nx: number of elements in x-direction
-! ny: number of elements in y-direction
-! nz: number of elements in z-direction
-! hx: discretization step in x-direction
-! hy: discretization step in y-direction
-! hz: discretization step in z-direction
-! e1: complex array, dimension nx*(ny-1)*(nz-1), passed to subroutine AS.f
-! e2: complex array, dimension (nx-1)*ny*(nz-1), passed to subroutine ZS.f
-! e3: complex array, dimension (nx-1)*(ny-1)*nz, passed to subroutine PS.f
-! Output:
-! temp: complex array, dimension n
-!====================================================================
 
-c Line 1
-
+! Equation AEx+BEy+CEz
         call AS(b(1:nx*(ny-1)*(nz-1)),
      +       nx,ny,nz,hx,hy,hz,ci,e1,
      +       pt1,pt2,pt3,pt4,pt5,pt6,
@@ -95,7 +94,7 @@ c Line 1
      +       a1,a2,a3,b1,b2,b3,c1,c2,c3,sv1,sv2,
      +       tempEX_3)
 
-c Line 2
+! Line 2
         call DS(b(1:nx*(ny-1)*(nz-1)),
      +       nx,ny,nz,hx,hy,hz,ci,
      +       pt1,pt2,pt3,pt4,pt5,pt6,
