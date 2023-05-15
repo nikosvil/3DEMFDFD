@@ -21,19 +21,19 @@
 ! specified by the user in config.dat file
 !====================================================================      
 ! Input:
-! nx: number of elements in x-direction
-! ny: number of elements in y-direction
-! nz: number of elements in z-direction
-! gl: ground level in the cuboid
-! sigma: conductivity 
-! sigma0: background conductivity
-! sigmaAIR: conductivity of the air
+! nx: integer, number of elements in x-direction
+! ny: integer, number of elements in y-direction
+! nz: integer, number of elements in z-direction
+! gl: real, ground level in the cuboid
+! sigma: real, conductivity 
+! sigma0: real, background conductivity
+! sigmaAIR: real, conductivity of the air
 ! Output:
-! SIGMAEX: conductivity σ in Ex nodes, dimension: nx*(ny-1)*(nz-1)
-! SIGMAEY: conductivity σ in Ey nodes, dimension: (nx-1)*ny*(nz-1) 
-! SIGMAEZ: conductivity σ in Ez nodes, dimension: (nx-1)*(ny-1)*nz
-! SIGMADiffEX: Difference between conductivity σ and background conductivity σ0 in Ex nodes, dimension: nx*(ny-1)*(nz-1)
-! SIGMADiffEY: Difference between conductivity σ and background conductivity σ0 in Ey nodes, dimension: (nx-1)*ny*(nz-1) 
+! SIGMAEX: real array, conductivity σ in Ex nodes, dimension: nx*(ny-1)*(nz-1)
+! SIGMAEY: real array, conductivity σ in Ey nodes, dimension: (nx-1)*ny*(nz-1) 
+! SIGMAEZ: real array, conductivity σ in Ez nodes, dimension: (nx-1)*(ny-1)*nz
+! SIGMADiffEX: real array, Difference between conductivity σ and background conductivity σ0 in Ex nodes, dimension: nx*(ny-1)*(nz-1)
+! SIGMADiffEY: real array, Difference between conductivity σ and background conductivity σ0 in Ey nodes, dimension: (nx-1)*ny*(nz-1) 
 !==================================================================== 
 c SIGMA-EX
 !$OMP PARALLEL DO PRIVATE(ik,zcounter) SHARED(SIGMAEX,SIGMADiffEX)
