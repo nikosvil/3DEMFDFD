@@ -36,7 +36,8 @@
 
 
 !==================================================================== 
-! SIGMA-EX Compute conductivity at Ex nodes above and below ground
+! Compute conductivity and conductivity difference 
+! at Ex nodes above and below ground
 !==================================================================== 
 
 !$OMP PARALLEL DO PRIVATE(ik,zcounter) SHARED(SIGMAEX,SIGMADiffEX)
@@ -45,12 +46,12 @@
        do iy=1,ny-1
         do ix=1,nx
          ik=(iz-1)*(ny-1)*nx+(iy-1)*nx+ix
-c     Below Ground
+!     Below Ground
          if (zcounter.le.gl) then
           SIGMADiffEX(ik)=sigma-sigma0
           SIGMAEX(ik)=sigma
          elseif (zcounter.gt.gl) then
-c     Above Ground
+!     Above Ground
           SIGMADiffEX(ik)=sigmaAIR
           SIGMAEX(ik)=sigmaAIR
          endif
@@ -60,7 +61,8 @@ c     Above Ground
 !$OMP END PARALLEL DO
 
 !==================================================================== 
-! SIGMA-EY Compute conductivity at Ey nodes above and below ground
+! Compute conductivity and conductivity difference 
+! at Ey nodes above and below ground
 !==================================================================== 
 
 !$OMP PARALLEL DO PRIVATE(ik,zcounter) SHARED(SIGMAEY,SIGMADiffEY) 
@@ -69,11 +71,11 @@ c     Above Ground
        do iy=1,ny
         do ix=1,nx-1
          ik=(iz-1)*ny*(nx-1)+(iy-1)*(nx-1)+ix
-c     Below Ground
+!     Below Ground
          if (zcounter.le.gl) then
           SIGMADiffEY(ik)=sigma-sigma0
           SIGMAEY(ik)=sigma
-c     Above Ground
+!     Above Ground
          else
           SIGMADiffEY(ik)=sigmaAIR
           SIGMAEY(ik)=sigmaAIR
@@ -84,7 +86,8 @@ c     Above Ground
 !$OMP END PARALLEL DO
 
 !==================================================================== 
-! SIGMA-EZ Compute conductivity at Ez nodes above and below ground
+! Compute conductivity and conductivity difference 
+! at Ex nodes above and below ground
 !==================================================================== 
 
 !$OMP PARALLEL DO PRIVATE(ik,zcounter) SHARED(SIGMAEZ)
@@ -93,9 +96,11 @@ c     Above Ground
        do iy=1,ny-1
         do ix=1,nx-1
          ik=(iz-1)*(ny-1)*(nx-1)+(iy-1)*(nx-1)+ix
+!     Below Ground
          if (zcounter.le.gl) then
           SIGMAEZ(ik)=sigma
          else
+!     Above Ground
           SIGMAEZ(ik)=sigmaAIR
          endif
         enddo
