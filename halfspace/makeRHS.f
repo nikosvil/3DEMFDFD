@@ -1,7 +1,10 @@
 ! ===================================================================
 ! Title: makeRHS.f 
-! Authors: N. Vilanakis, E. Mathioudakis
+! Authors: N. D. Vilanakis, E. N. Mathioudakis
 ! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+! * A 3D frequency-domain electromagnetic solver employing a high order compact finite-difference scheme
+! * N. D. Vilanakis, N. Economou, E. N. Mathioudakis, A. Vafidis
+! * Computers and Geosciences
 !====================================================================
 ! makeRHS.f computes the right hand side vectors F1 and F2 of equations
 ! AEx+BEy+CEz=F1 and DEx+ZEy+KEz=F2
