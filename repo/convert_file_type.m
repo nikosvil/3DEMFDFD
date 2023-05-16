@@ -1,7 +1,11 @@
 % ===================================================================
 % Title: convert_file_type.m
-% Authors: N. Vilanakis
+% Authors: N. D. Vilanakis
 % Details: Applied Mathematics and Computers Lab, Technical University of Crete
+% Cite: 
+% * A 3D frequency-domain electromagnetic solver employing a high order compact finite-difference scheme
+% * N. D. Vilanakis, N. Economou, E. N. Mathioudakis, A. Vafidis
+% * Computers and Geosciences
 %====================================================================
 % Script that saves .txt files that contain the total electric field 
 % component values as Matlab variables
