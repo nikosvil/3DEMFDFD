@@ -1,7 +1,10 @@
 # ===================================================================
-# Title: create_EbackFiles_Halfspace
-# Authors: N. Vilanakis
+# Title: create_EbackFiles_Halfspace.m
+# Authors: N. D. Vilanakis
 # Details: Applied Mathematics and Computers Lab, Technical University of Crete
+# * A 3D frequency-domain electromagnetic solver employing a high order compact finite-difference scheme
+# * N. D. Vilanakis, N. Economou, E. N. Mathioudakis, A. Vafidis
+# * Computers and Geosciences
 #====================================================================
 # Script that reads model physical parameters from config.dat
 # and creates the background electric field components
