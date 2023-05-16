@@ -1,7 +1,10 @@
 # ===================================================================
 # Title: convert_files.py
-# Authors: N. Vilanakis
+# Authors: N. D. Vilanakis
 # Details: Applied Mathematics and Computers Lab, Technical University of Crete
+# * A 3D frequency-domain electromagnetic solver employing a high order compact finite-difference scheme
+# * N. D. Vilanakis, N. Economou, E. N. Mathioudakis, A. Vafidis
+# * Computers and Geosciences
 #====================================================================
 # Script that reads .txt files that contain the total electric field 
 # component values produced by the Fortran program and writes new ones
