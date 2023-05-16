@@ -1,3 +1,12 @@
+# ===================================================================
+# Title: convert_files.py
+# Authors: N. Vilanakis
+# Details: Applied Mathematics and Computers Lab, Technical University of Crete
+#====================================================================
+# Script that reads .txt files that contain the total electric field 
+# component values produced by the Fortran program and writes new ones
+# complex-like strings to be processed by Matlab
+#====================================================================
 import math
 import numpy
 
