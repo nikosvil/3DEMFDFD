@@ -1,4 +1,12 @@
-%Save Fortran Output as Matlab Variables
+% ===================================================================
+% Title: convert_file_type.m
+% Authors: N. Vilanakis
+% Details: Applied Mathematics and Computers Lab, Technical University of Crete
+%====================================================================
+% Script that saves .txt files that contain the total electric field 
+% component values as Matlab variables
+%====================================================================
+
 fid1 = fopen('../temp/mEtotalX.txt');
 EtotalX=cell2mat(textscan(fid1,'%f %*[^\n]'));
 save ../temp/TotalEX.mat EtotalX
