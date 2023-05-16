@@ -1,12 +1,15 @@
 #!/bin/bash
 
-#################################
-# TECHNICAL UNIVERSITY OF CRETE #
-#                               #
-# GAIAHPC initialization script #
-#                               #
-# Usage: ./gaia.sh <config.dat  #
-#################################
+#================================================================================================
+# GAIAHPC initialization script
+# Usage: ./gaia.sh <config.dat 
+#================================================================================================
+# Authors: N. D. Vilanakis
+# Details: Applied Mathematics and Computers Lab, Technical University of Crete
+# * A 3D frequency-domain electromagnetic solver employing a high order compact finite-difference scheme
+# * N. D. Vilanakis, N. Economou, E. N. Mathioudakis, A. Vafidis
+# * Computers and Geosciences
+#================================================================================================
 
 # Check if stdin was redirected
 if [ -t 0 ]
