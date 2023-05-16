@@ -3,7 +3,7 @@
 ! Authors: N. Vilanakis, E. Mathioudakis
 ! Details: Applied Mathematics and Computers Lab, Technical University of Crete
 !====================================================================
-! MS.f performs the multiplication M*q=tempEY
+! MS.f performs the multiplication M*q=tempEZ
 ! by performing the operations between terms that make up block M 
 ! of matrix U and the input array q
 !====================================================================      
