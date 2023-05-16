@@ -1,7 +1,10 @@
 ! ===================================================================
 ! Title: PS.f 
-! Authors: N. Vilanakis, E. Mathioudakis
+! Authors: N. D. Vilanakis, E. N. Mathioudakis
 ! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+! * A 3D frequency-domain electromagnetic solver employing a high order compact finite-difference scheme
+! * N. D. Vilanakis, N. Economou, E. N. Mathioudakis, A. Vafidis
+! * Computers and Geosciences
 !====================================================================
 ! PS.f performs the multiplication P*q=tempEZ
 ! by performing the operations between terms that make up block P 
