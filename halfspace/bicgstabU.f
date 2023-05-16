@@ -1,7 +1,10 @@
 ! ===================================================================
 ! Title: bicgstabU.f 
-! Authors: N. Vilanakis, E. Mathioudakis
+! Authors: N. D. Vilanakis, E. N. Mathioudakis
 ! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+! * A 3D frequency-domain electromagnetic solver employing a high order compact finite-difference scheme
+! * N. D. Vilanakis, N. Economou, E. N. Mathioudakis, A. Vafidis
+! * Computers and Geosciences
 !====================================================================
 ! bicgstabU.f implements the BiCGSTAB iterative method for the
 ! solution of the linear system UE=b
