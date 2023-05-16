@@ -1,7 +1,10 @@
 ! ===================================================================
 ! Title: makeS.f 
-! Authors: N. Vilanakis, E. Mathioudakis
+! Authors: N. D. Vilanakis, E. N. Mathioudakis
 ! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+! * A 3D frequency-domain electromagnetic solver employing a high order compact finite-difference scheme
+! * N. D. Vilanakis, N. Economou, E. N. Mathioudakis, A. Vafidis
+! * Computers and Geosciences
 !====================================================================
 ! makeS.f computes the necessary conductivity vector coefficients 
 ! σx (SIGMAEX), σy (SIGMAEY), σz (SIGMAEZ)
