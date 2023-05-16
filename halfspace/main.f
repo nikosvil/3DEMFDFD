@@ -1,6 +1,10 @@
 ! ===================================================================
 ! Title: 3D Finite Difference Frequency Domain Electromagnetic Solver 
-! Authors: N. Vilanakis, E. Mathioudakis
+! Authors: N. D. Vilanakis, E. N. Mathioudakis
+! Details: Applied Mathematics and Computers Lab, Technical University of Crete
+! * A 3D frequency-domain electromagnetic solver employing a high order compact finite-difference scheme
+! * N. D. Vilanakis, N. Economou, E. N. Mathioudakis, A. Vafidis
+! * Computers and Geosciences
 !====================================================================
 ! main.f is the main Fortran file of the 3D FD EM solver 
 ! Throughout main.f several subroutines are successively being called
