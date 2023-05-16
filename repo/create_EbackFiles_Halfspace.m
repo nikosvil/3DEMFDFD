@@ -1,3 +1,12 @@
+# ===================================================================
+# Title: create_EbackFiles_Halfspace
+# Authors: N. Vilanakis
+# Details: Applied Mathematics and Computers Lab, Technical University of Crete
+#====================================================================
+# Script that reads model physical parameters from config.dat
+# and creates the background electric field components
+# using E_to_onepoint_hankel_transform.m at nodes
+#====================================================================
 close all;clc;format long;clear all;
 %Initial Parameters
 
