@@ -354,7 +354,7 @@ c B3*t=tnew2 tnew2:nx*ny*(nz-1) t:nx*(ny-1)*(nz-1)
 !$OMP END PARALLEL DO
 
 !==================================================================== 
-! B16*t=tnew tnew:(nx-1)*ny*(nz-1) t: (nx-1)*ny*(nz-1)
+! B16*t=tnew tnew:(nx-1)*ny*(nz-1) t: (nx-1)*ny*nz
 !==================================================================== 
 	elseif (tag.eq.16) then
 !$OMP PARALLEL DO COLLAPSE(2)
