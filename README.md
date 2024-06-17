@@ -16,8 +16,8 @@ The config file contains the necessary parameters of the physical problem, line 
 Length-of-x-side-in-the-domain Length-of-y-side-in-the-domain Length-of-z-side-in-the-domain  
 Position-of-transmitter-in-x-direction Position-of-transmitter-in-y-direction Position-of-transmitter-in-z-direction*  
 Ground-in-z-direction  
-Background-resistivity  
-Foreground-resistivity  
+Background-conductivity  
+Foreground-conductivity  
 Frequency
 
 Example:
