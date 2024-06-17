@@ -29,7 +29,7 @@ Example:
 0.01  
 3000  
 
-Distance is given in m, resistivity in Ohm and frequency in Hz.
+Distance is given in m, conductivity in S/m and frequency in Hz.
 
 ***Important Notices**:
 
