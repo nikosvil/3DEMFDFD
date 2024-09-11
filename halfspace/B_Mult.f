@@ -39,7 +39,7 @@ c vector t producing vector tnew
      +  tnew3(nx*(ny-1)*nz),
      +  tnew4((nx-1)*ny*(nz-1)),
      +  tnew5((nx-1)*ny*nz),
-     +  tnew6((nx-1)*(ny-1)*nz),
+     +  tnew6((nx-1)*(ny-1)*nz)
 
 !==================================================================== 
 ! B1*t=tnew2 tnew2: nx*ny*(nz-1), t: (nx-1)*ny*(nz-1)
