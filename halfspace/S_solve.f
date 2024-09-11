@@ -7,7 +7,7 @@
 ! * Computers and Geosciences
 !====================================================================
 ! S_solve.f computes the solution tnew of the linear system Snum*tnew=tnew
-! using classic Cyclic Reduction or the Fourier-based Cyclic Reduction
+! using classic Cyclic Reduction or the Fourier method
 ! depending on the structure of the Snum matrix
 ! Each time the subroutine is being called, integer input Snum specifies
 ! which operation is being performed using the input y array with the 
@@ -217,7 +217,7 @@ c MultVal Complete
 !$omp end parallel do
 
 !==================================================================== 
-! Solves S2*tnew1=tnew1 using classic Fourier-based CR
+! Solves S2*tnew1=tnew1 using Fourier method
 !==================================================================== 
       elseif (Snum.eq.2) then
  
@@ -411,7 +411,7 @@ c  Multval complete
 !$omp end parallel do
 
 !==================================================================== 
-! Solves S4*tnew1=tnew1 using Fourier-based CR
+! Solves S4*tnew1=tnew1 using Fourier method
 !==================================================================== 
 	elseif (Snum.eq.4) then
 	
@@ -578,7 +578,7 @@ c MultVal complete
       enddo
 
 !==================================================================== 
-! Solves S6*tnew1=tnew1 using Fourier-based CR
+! Solves S6*tnew1=tnew1 using Fourier method
 !==================================================================== 
 	elseif (Snum.eq.6) then
        
@@ -741,7 +741,7 @@ c MultVal complete
 !$omp end parallel do 
 
 !==================================================================== 
-! Solves S8*tnew1=tnew1 using Fourier-based CR 
+! Solves S8*tnew1=tnew1 using Fourier method 
 !==================================================================== 
 	elseif (Snum.eq.8) then
 
@@ -921,7 +921,7 @@ c MultVal complete
 !$omp end parallel do
 
 !==================================================================== 
-! Solves S10*tnew4=tnew4 using Fourier-based CR
+! Solves S10*tnew4=tnew4 using Fourier method
 !==================================================================== 
 	elseif (Snum.eq.10) then
         
@@ -1078,7 +1078,7 @@ c MultVal complete
 !$omp end parallel do
 
 !==================================================================== 
-! Solves S12*tnew4=tnew4 using Fourier-based CR 
+! Solves S12*tnew4=tnew4 using Fourier method 
 !==================================================================== 
 	elseif (Snum.eq.12) then
 
@@ -1246,7 +1246,7 @@ c Multval complete
       enddo
 
 !==================================================================== 
-! Solves S14*tnew4=tnew4 using Fourier-based CR
+! Solves S14*tnew4=tnew4 using Fourier method
 !==================================================================== 
 	elseif (Snum.eq.14) then
         
@@ -1446,7 +1446,7 @@ c tnew evaluation
 !$omp end parallel do
  
 !==================================================================== 
-! Solves S16*tnew4=tnew4 using Fourier-based CR
+! Solves S16*tnew4=tnew4 using Fourier method
 !==================================================================== 
 	elseif (Snum.eq.16) then
 
@@ -1612,7 +1612,7 @@ c MultVal complete
 !$omp end parallel do
 
 !==================================================================== 
-! Solves S18*tnew6=tnew6 using Fourier-based CR
+! Solves S18*tnew6=tnew6 using Fourier method
 !==================================================================== 
 	elseif (Snum.eq.18) then
 
@@ -1806,7 +1806,7 @@ c        k=lgy
 !$omp end parallel do
 
 !==================================================================== 
-! Solves S20*tnew6=tnew6 using Fourier-based CR
+! Solves S20*tnew6=tnew6 using Fourier method
 !==================================================================== 
 	elseif (Snum.eq.20) then
          call zcopy(size(tnew6),tnew6,1,y6,1)
